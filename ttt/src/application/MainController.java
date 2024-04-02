@@ -22,7 +22,7 @@ public class MainController {
 		if(txtUserName.getText().equals("user") && txtPassword.getText().equals("pass")){
 			lblStatus.setText("Login Success");
 			Stage primaryStage = new Stage();
-			Parent root = FXMLLoader.load(getClass().getResource("/application/Main.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/application/book_reg.fxml"));
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
