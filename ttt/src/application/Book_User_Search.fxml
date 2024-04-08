@@ -12,9 +12,9 @@
 
 <AnchorPane prefHeight="562.0" prefWidth="943.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">   
 	<children>      
-	<Label layoutX="385.0" layoutY="28.0" text="도서&amp;회원관리">         
+	<Label layoutX="349.0" layoutY="13.0" text="도서&amp;회원관리">         
 		<font>            
-			<Font name="휴먼중간팸체" size="44.0" />         
+			<Font name="Cafe24 Ssurround air" size="40.0" />         
 		</font>      
 	</Label>
       <TableView layoutX="21.0" layoutY="126.0" prefHeight="370.0" prefWidth="897.0">
@@ -33,19 +33,18 @@
             <TableColumn prefWidth="116.8001708984375" text="연락처" />
         </columns>
       </TableView>
-      <ToolBar layoutX="709.0" layoutY="1.0" prefHeight="51.0" prefWidth="227.0">
+      <ToolBar layoutX="784.0" layoutY="1.0" prefHeight="40.0" prefWidth="154.0">
         <items>
           <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="68.0" text="홈으로" />
             <Button layoutX="10.0" layoutY="15.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="68.0" text="로그아웃" />
-            <Button layoutX="110.0" layoutY="14.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="68.0" text="종료" />
         </items>
       </ToolBar>
       <Button layoutX="96.0" layoutY="507.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="62.0" text="삭제" />
-      <Button layoutX="21.0" layoutY="507.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="62.0" text="추방" />
+      <Button layoutX="21.0" layoutY="507.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="62.0" text="추가" />
       <ToolBar layoutX="20.0" layoutY="74.0" prefHeight="40.0" prefWidth="486.0">
          <items>
             <TextField prefHeight="22.0" prefWidth="417.0" />
-            <Button layoutX="110.0" layoutY="14.0" mnemonicParsing="false" text="Button" />
+            <Button layoutX="110.0" layoutY="14.0" mnemonicParsing="false" text="search" />
          </items>
       </ToolBar>   
 	</children>
