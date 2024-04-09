@@ -1,4 +1,4 @@
-package application;
+package application.Table;
 
 import java.util.HashMap;
 

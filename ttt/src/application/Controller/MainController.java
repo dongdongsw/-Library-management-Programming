@@ -1,4 +1,4 @@
-package application;
+package application.Controller;
 
 import java.io.IOException;
 import javafx.event.ActionEvent;
@@ -22,7 +22,7 @@ public class MainController {
 		if(txtUserName.getText().equals("user") && txtPassword.getText().equals("pass")){
 			lblStatus.setText("Login Success");
 			Stage primaryStage = new Stage();
-			Parent root = FXMLLoader.load(getClass().getResource("/application/Book_User_Search.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/application/Main/MainMenu.fxml"));
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
