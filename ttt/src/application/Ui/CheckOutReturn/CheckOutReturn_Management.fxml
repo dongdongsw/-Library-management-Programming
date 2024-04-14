@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="562.0" prefWidth="943.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">   
+<AnchorPane prefHeight="562.0" prefWidth="943.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CheckOutReturn_ManagementController">   
 	<children>      
 	<Label layoutX="385.0" layoutY="28.0" text="대출&amp;반납">         
 		<font>            
@@ -35,9 +35,9 @@
       </TableView>
       <ToolBar layoutX="709.0" layoutY="1.0" prefHeight="51.0" prefWidth="227.0">
         <items>
-          <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="68.0" text="홈으로" />
-            <Button layoutX="10.0" layoutY="15.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="68.0" text="로그아웃" />
-            <Button layoutX="110.0" layoutY="14.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="68.0" text="종료" />
+          <Button fx:id="Home" mnemonicParsing="false" onAction="#handleHomeButtonAction" prefHeight="32.0" prefWidth="68.0" text="홈으로" />
+            <Button fx:id="LogOut" layoutX="10.0" layoutY="15.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="68.0" text="로그아웃" />
+            <Button fx:id="Exit" layoutX="110.0" layoutY="14.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="68.0" text="종료" />
         </items>
       </ToolBar>
       <Button layoutX="96.0" layoutY="507.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="62.0" text="반납" />
