@@ -36,8 +36,8 @@
       <ToolBar layoutX="709.0" layoutY="1.0" prefHeight="51.0" prefWidth="227.0">
         <items>
           <Button fx:id="Home" mnemonicParsing="false" onAction="#handleHomeButtonAction" prefHeight="32.0" prefWidth="68.0" text="홈으로" />
-            <Button fx:id="LogOut" layoutX="10.0" layoutY="15.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="68.0" text="로그아웃" />
-            <Button fx:id="Exit" layoutX="110.0" layoutY="14.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="68.0" text="종료" />
+            <Button fx:id="LogOut" layoutX="10.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleLogOutButtonAction" prefHeight="32.0" prefWidth="68.0" text="로그아웃" />
+            <Button fx:id="Exit" layoutX="110.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleExitButtonAction" prefHeight="32.0" prefWidth="68.0" text="종료" />
         </items>
       </ToolBar>
       <Button layoutX="96.0" layoutY="507.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="62.0" text="반납" />
