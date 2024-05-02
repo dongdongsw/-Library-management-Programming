@@ -10,7 +10,7 @@
    <children>
       <StackPane prefHeight="100.0" prefWidth="550.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="입력하신 회원명은 존재하지 않습니다." textAlignment="CENTER">
+            <Text fx:id="messageText" strokeType="OUTSIDE" strokeWidth="0.0" text="입력하신 회원명은 존재하지 않습니다." textAlignment="CENTER">
                <font>
                   <Font size="30.0" />
                </font>

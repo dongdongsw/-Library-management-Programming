@@ -17,20 +17,20 @@
 			<Font name="휴먼중간팸체" size="44.0" />         
 		</font>      
 	</Label>
-      <TableView layoutX="21.0" layoutY="126.0" prefHeight="370.0" prefWidth="897.0">
+      <TableView fx:id="MemberTableView" layoutX="21.0" layoutY="126.0" prefHeight="370.0" prefWidth="897.0">
         <columns>
-            <TableColumn prefWidth="42.399959564208984">
+            <TableColumn fx:id="checkBoxColumn" prefWidth="42.399959564208984">
                <graphic>
-                  <CheckBox mnemonicParsing="false" />
+                  <CheckBox fx:id="membercheckbox" mnemonicParsing="false" />
                </graphic>
             </TableColumn>
-          <TableColumn prefWidth="60.0" text="회원번호" />
-          <TableColumn minWidth="0.0" prefWidth="142.0" text="아이디" />
-            <TableColumn prefWidth="131.0" text="이름" />
-            <TableColumn prefWidth="116.0" text="대출가능여부 " />
-            <TableColumn prefWidth="107.0" text="대출가능권수" />
-            <TableColumn prefWidth="139.0" text="생년 월일" />
-            <TableColumn prefWidth="158.0" text="연락처" />
+          <TableColumn fx:id="memberNoColumn" prefWidth="60.0" text="회원번호" />
+          <TableColumn fx:id="memberIdColumn" minWidth="0.0" prefWidth="142.0" text="아이디" />
+            <TableColumn fx:id="memberNameColumn" prefWidth="131.0" text="이름" />
+            <TableColumn fx:id="eligibleColumn" prefWidth="116.0" text="대출가능여부 " />
+            <TableColumn fx:id="checkOutLimitColumn" prefWidth="107.0" text="대출가능권수" />
+            <TableColumn fx:id="birthdayColumn" prefWidth="139.0" text="생년 월일" />
+            <TableColumn fx:id="phoneNumberColumn" prefWidth="158.0" text="연락처" />
         </columns>
       </TableView>
       <ToolBar layoutX="709.0" layoutY="1.0" prefHeight="51.0" prefWidth="227.0">
@@ -41,7 +41,7 @@
         </items>
       </ToolBar>
       <Button layoutX="96.0" layoutY="507.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="62.0" text="반납" />
-      <Button layoutX="21.0" layoutY="507.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="62.0" text="대출" />
+      <Button layoutX="21.0" layoutY="507.0" mnemonicParsing="false" onAction="#handleCheckOutButtonAction" prefHeight="31.0" prefWidth="62.0" text="대출" />
       <ToolBar layoutX="20.0" layoutY="74.0" prefHeight="40.0" prefWidth="486.0">
          <items>
             <TextField prefHeight="22.0" prefWidth="417.0" />

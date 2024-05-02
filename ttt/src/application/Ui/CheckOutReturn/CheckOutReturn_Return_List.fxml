@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="936.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">   
 	<children>      
-	<Label layoutX="385.0" layoutY="28.0" text="반납도서목록">         
+	<Label layoutX="385.0" layoutY="28.0" text="대출도서목록">         
 		<font>            
 			<Font name="휴먼중간팸체" size="44.0" />         
 		</font>      
@@ -23,7 +23,7 @@
                   <CheckBox mnemonicParsing="false" />
                </graphic>
             </TableColumn>
-          <TableColumn prefWidth="60.0" text="도서번호" />
+          <TableColumn prefWidth="60.0" text="분류" />
           <TableColumn minWidth="0.0" prefWidth="236.0" text="도서제목" />
             <TableColumn minWidth="3.0" prefWidth="97.0" text="저자" />
             <TableColumn prefWidth="175.0" text="출판사" />
