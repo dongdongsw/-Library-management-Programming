@@ -19,7 +19,7 @@
 	</Label>
       <TableView fx:id="MemberTableView" layoutX="21.0" layoutY="126.0" prefHeight="370.0" prefWidth="897.0">
         <columns>
-            <TableColumn fx:id="checkBoxColumn" prefWidth="42.399959564208984">
+            <TableColumn fx:id="checkBoxColumn" text = "Select" prefWidth="42.399959564208984">
                <graphic>
                   <CheckBox fx:id="membercheckbox" mnemonicParsing="false" />
                </graphic>
@@ -41,7 +41,7 @@
         </items>
       </ToolBar>
       <Button layoutX="96.0" layoutY="507.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="62.0" text="반납" />
-      <Button layoutX="21.0" layoutY="507.0" mnemonicParsing="false" onAction="#handleCheckOutButtonAction" prefHeight="31.0" prefWidth="62.0" text="대출" />
+      <Button fx:id="CheckOutButton" layoutX="21.0" layoutY="507.0" mnemonicParsing="false" onAction="#handleCheckOutButtonAction" prefHeight="31.0" prefWidth="62.0" text="대출" />
       <ToolBar layoutX="20.0" layoutY="74.0" prefHeight="40.0" prefWidth="486.0">
          <items>
             <TextField prefHeight="22.0" prefWidth="417.0" />

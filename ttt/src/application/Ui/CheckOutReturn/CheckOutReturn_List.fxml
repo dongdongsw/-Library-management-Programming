@@ -10,33 +10,33 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="562.0" prefWidth="943.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">   
+<AnchorPane prefHeight="562.0" prefWidth="943.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CheckOutReturn_ListController">   
 	<children>      
 	<Label layoutX="388.0" layoutY="22.0" text="도서목록">         
 		<font>            
 			<Font size="50.0" />         
 		</font>      
 	</Label>
-      <TableView layoutX="21.0" layoutY="126.0" prefHeight="370.0" prefWidth="897.0">
+      <TableView fx:id="BookTableView" layoutX="21.0" layoutY="126.0" prefHeight="370.0" prefWidth="897.0">
         <columns>
-            <TableColumn prefWidth="42.399959564208984">
+            <TableColumn fx:id="CheckBoxColumn" prefWidth="42.399959564208984">
                <graphic>
-                  <CheckBox mnemonicParsing="false" />
+                  <CheckBox fx:id="CheckBox" mnemonicParsing="false" />
                </graphic>
             </TableColumn>
-          <TableColumn prefWidth="107.0" text="분류" />
-          <TableColumn minWidth="0.0" prefWidth="234.0" text="도서제목" />
-            <TableColumn minWidth="3.0" prefWidth="139.0" text="저자" />
-            <TableColumn prefWidth="128.0" text="출판사" />
-            <TableColumn prefWidth="127.0" text="대출가능여부" />
+          <TableColumn fx:id="CategoryColumn" prefWidth="107.0" text="분류" />
+          <TableColumn fx:id="TitleColumn" minWidth="0.0" prefWidth="234.0" text="도서제목" />
+            <TableColumn fx:id="AuthorColumn" minWidth="3.0" prefWidth="139.0" text="저자" />
+            <TableColumn fx:id="PublisherColumn" prefWidth="128.0" text="출판사" />
+            <TableColumn fx:id="IsCheckOutedColumn" prefWidth="127.0" text="대출가능여부" />
         </columns>
       </TableView>
       <ToolBar layoutX="847.0" layoutY="1.0" prefHeight="51.0" prefWidth="89.0">
         <items>
-            <Button layoutX="110.0" layoutY="14.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="68.0" text="종료" />
+            <Button fx:id="Exit" layoutX="110.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleExitButtonAction" prefHeight="32.0" prefWidth="68.0" text="종료" />
         </items>
       </ToolBar>
-      <Button layoutX="21.0" layoutY="507.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="62.0" text="대출" />
+      <Button fx:id="CheckOut" layoutX="21.0" layoutY="507.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="62.0" text="대출" />
       <ToolBar layoutX="20.0" layoutY="74.0" prefHeight="40.0" prefWidth="486.0">
          <items>
             <TextField prefHeight="22.0" prefWidth="417.0" />

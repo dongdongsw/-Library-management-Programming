@@ -18,6 +18,7 @@ public class Member {
 	private String PhoneNumber;
 	private List<Book> CheckOut = new ArrayList<>();
 	
+	/*	
 	private final BooleanProperty selected = new SimpleBooleanProperty();
 
     public BooleanProperty selectedProperty() {
@@ -31,7 +32,21 @@ public class Member {
     public void setSelected(boolean selected) {
         this.selected.set(selected);
     }
+	*/
 	
+	private BooleanProperty selected = new SimpleBooleanProperty();
+
+    public final BooleanProperty selectedProperty() {
+        return this.selected;
+    }
+
+    public final boolean isSelected() {
+        return this.selectedProperty().get();
+    }
+
+    public final void setSelected(final boolean selected) {
+        this.selectedProperty().set(selected);
+    }
 	// 생성자
 	public Member(String Member_No, String Member_Id, String Member_Name, String CheckOutEligible, int CheckOutLimit, String Birthday, String PhoneNumber) {
         this.Member_No = Member_No;
