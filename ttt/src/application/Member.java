@@ -108,5 +108,9 @@ public class Member {
 	 public void setPhoneNumber(String PhoneNumber) {
 		 this.PhoneNumber = PhoneNumber;
 	    }
+	 public void addBookToCheckedOut(Book book) {
+		 this.CheckOut.add(book);
+		 this.CheckOutLimit--;
+	 }
 
 }

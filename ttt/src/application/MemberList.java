@@ -7,8 +7,17 @@ import javafx.collections.ObservableList;
 
 public class MemberList {
 	
+	private static MemberList instance;
 	private ObservableList<Member> Members = FXCollections.observableArrayList();
 	
+	public Member findMemberByName(String name) {
+		for(Member member : Members) {
+			if(member.getMember_Name().equals(name)) {
+				return member;
+			}
+		}
+		return null; // Return null if no member Found
+	}
 	public MemberList() {
         // 초기 멤버 데이터 추가
         Members.add(new Member("1", "Jihye01", "이지혜", "O", 5, "000000", "111"));
@@ -37,7 +46,12 @@ public class MemberList {
         updateCheckOutLimits();
 	}
 
-	
+	public static synchronized MemberList getInstance() {
+		if(instance == null) {
+			instance = new MemberList();
+		}
+		return instance;
+	}
 	// 멤버들의 CheckOutLimit 업데이트
     private void updateCheckOutLimits() {
         for (Member member : Members) {

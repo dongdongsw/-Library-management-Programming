@@ -63,8 +63,9 @@ public class CheckOutReturn_ManagementController {
     }
     
     
-    private MemberList MemberList = new MemberList(); // MemberList 인스턴스 생성
-    private BookList availableBooks = new BookList(); // 사용 가능한 책 목록
+    private MemberList Member = MemberList.getInstance(); // MemberList 인스턴스 생성
+    private BookList availableBooks = BookList.getInstance(); // 사용 가능한 책 목록
+
     
     
     
@@ -80,8 +81,8 @@ public class CheckOutReturn_ManagementController {
         phoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("PhoneNumber"));
     	
         // MemberList의 데이터를 TableView에 설정
-        MemberTableView.setItems(MemberList.getMembers());
-        
+        MemberTableView.setItems(Member.getInstance().getMembers());
+           
         
      // 체크박스 칼럼 설정
         checkBoxColumn.setCellValueFactory(new PropertyValueFactory<>("selected"));
@@ -256,7 +257,7 @@ public class CheckOutReturn_ManagementController {
 	    String query = searchField.getText().toLowerCase();
 	    ObservableList<Member> filteredList = FXCollections.observableArrayList();
 
-	    for (Member member : MemberList.getMembers()) {
+	    for (Member member : Member.getMembers()) {
 	        if (member.getMember_Id().toLowerCase().contains(query) ||
 	            member.getMember_Name().toLowerCase().contains(query) ||
 	            member.getPhoneNumber().toLowerCase().contains(query)) {

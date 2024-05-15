@@ -69,6 +69,10 @@ public class Book {
     public void setIsCheckOuted(String IsCheckOuted) {
     	this.IsCheckOuted = IsCheckOuted;
     }
+    
+    public void checkOutBook() {
+    	this.IsCheckOuted = "대출중";
+    }
 
 	
 

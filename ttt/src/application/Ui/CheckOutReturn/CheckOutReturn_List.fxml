@@ -36,7 +36,7 @@
             <Button fx:id="Exit" layoutX="110.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleExitButtonAction" prefHeight="32.0" prefWidth="68.0" text="종료" />
         </items>
       </ToolBar>
-      <Button fx:id="CheckOut" layoutX="21.0" layoutY="507.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="62.0" text="대출" />
+      <Button fx:id="CheckOutButton" layoutX="21.0" layoutY="507.0" mnemonicParsing="false" onAction="#handleCheckOutButtonAction" prefHeight="31.0" prefWidth="62.0" text="대출" />
       <ToolBar layoutX="20.0" layoutY="74.0" prefHeight="40.0" prefWidth="486.0">
          <items>
             <TextField prefHeight="22.0" prefWidth="417.0" />
