@@ -2,6 +2,7 @@ package application;
 
 import java.io.IOException;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,7 +29,8 @@ public class CheckOutReturn_ListController {
    
     @FXML
     private Button CheckOutButton, Exit;
-    
+    @FXML
+    private TableColumn<Book, String> BookNoColumn;
     @FXML
     private TableColumn<Book, String> CategoryColumn;
     @FXML
@@ -39,6 +41,8 @@ public class CheckOutReturn_ListController {
     private TableColumn<Book, String> PublisherColumn;
     @FXML
     private TableColumn<Book, String> IsCheckOutedColumn;
+    @FXML
+    private TableColumn<Book, String> MemberColumn;
     @FXML
     private TableColumn<Book, Boolean> CheckBoxColumn;
     @FXML
@@ -70,11 +74,14 @@ public class CheckOutReturn_ListController {
     
     @FXML
     private void initialize() {
+    	BookNoColumn.setCellValueFactory(new PropertyValueFactory<>("Book_No"));
     	CategoryColumn.setCellValueFactory(new PropertyValueFactory<>("Category"));
     	TitleColumn.setCellValueFactory(new PropertyValueFactory<>("Title"));
     	AuthorColumn.setCellValueFactory(new PropertyValueFactory<>("Author"));
     	PublisherColumn.setCellValueFactory(new PropertyValueFactory<>("Publisher"));
     	IsCheckOutedColumn.setCellValueFactory(new PropertyValueFactory<>("IsCheckOuted"));
+    	MemberColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCheckOutedName() + " (" + cellData.getValue().getCheckOutedId() + ")"));
+
     	
         // BookList의 데이터를 TableView에 설정
         BookTableView.setItems(bookList.getAllBook());
@@ -127,12 +134,12 @@ public class CheckOutReturn_ListController {
         	
                 
              // 현재 선택된 책을 "대출중"으로 업데이트
-                selectedBook.checkOutBook();
+                selectedBook.checkOutBook(currentMember.getMember_Name(), currentMember.getMember_Id());
                 // 현재 회원의 대출 목록에 추가하고 대출 가능 수를 감소
                 currentMember.addBookToCheckedOut(selectedBook);
                 
                 bookList.updateBook(selectedBook); // BookList에 변경 사항 반영
-                
+                BookTableView.refresh();
                 // UI 갱신
                 //BookTableView.refresh();
                 

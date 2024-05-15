@@ -77,8 +77,7 @@ public class CheckOutReturn_ManagementController {
         memberNameColumn.setCellValueFactory(new PropertyValueFactory<>("Member_Name"));
         eligibleColumn.setCellValueFactory(new PropertyValueFactory<>("CheckOutEligible"));
         checkOutLimitColumn.setCellValueFactory(new PropertyValueFactory<>("CheckOutLimit"));
-        birthdayColumn.setCellValueFactory(new PropertyValueFactory<>("Birthday"));
-        phoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("PhoneNumber"));
+        
     	
         // MemberList의 데이터를 TableView에 설정
         MemberTableView.setItems(Member.getInstance().getMembers());

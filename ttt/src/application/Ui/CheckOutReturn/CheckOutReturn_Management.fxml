@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
@@ -9,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="562.0" prefWidth="943.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CheckOutReturn_ManagementController">   
+<AnchorPane prefHeight="562.0" prefWidth="943.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CheckOutReturn_ManagementController">   
     <children>      
     <Label layoutX="385.0" layoutY="28.0" text="대출&amp;반납">         
         <font>            
@@ -23,18 +24,16 @@
                     <CheckBox fx:id="membercheckbox" mnemonicParsing="false" />
                 </graphic>
             </TableColumn>
-            <TableColumn fx:id="memberNoColumn" prefWidth="60.0" text="회원번호" />
-            <TableColumn fx:id="memberIdColumn" minWidth="0.0" prefWidth="142.0" text="아이디" />
-            <TableColumn fx:id="memberNameColumn" prefWidth="131.0" text="이름" />
-            <TableColumn fx:id="eligibleColumn" prefWidth="116.0" text="대출가능여부 " />
-            <TableColumn fx:id="checkOutLimitColumn" prefWidth="107.0" text="대출가능권수" />
-            <TableColumn fx:id="birthdayColumn" prefWidth="139.0" text="생년 월일" />
-            <TableColumn fx:id="phoneNumberColumn" prefWidth="158.0" text="연락처" />
+            <TableColumn fx:id="memberNoColumn" prefWidth="92.0" text="회원번호" />
+            <TableColumn fx:id="memberIdColumn" minWidth="0.0" prefWidth="196.0" text="아이디" />
+            <TableColumn fx:id="memberNameColumn" prefWidth="138.0" text="이름" />
+            <TableColumn fx:id="eligibleColumn" prefWidth="139.0" text="대출가능여부 " />
+            <TableColumn fx:id="checkOutLimitColumn" prefWidth="161.0" text="대출가능권수" />
         </columns>
     </TableView>
     <ToolBar layoutX="20.0" layoutY="74.0" prefHeight="40.0" prefWidth="510.0">
         <items>
-            <TextField fx:id="searchField" onKeyReleased="#handleSearch" promptText="검색..." prefHeight="22.0" prefWidth="417.0" />
+            <TextField fx:id="searchField" onKeyReleased="#handleSearch" prefHeight="22.0" prefWidth="417.0" promptText="검색..." />
             <Button mnemonicParsing="false" onAction="#handleSearchButtonAction" prefHeight="23.0" prefWidth="53.0" text="조회" />
         </items>
     </ToolBar>

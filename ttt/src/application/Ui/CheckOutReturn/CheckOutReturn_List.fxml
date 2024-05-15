@@ -24,11 +24,13 @@
                   <CheckBox fx:id="CheckBox" mnemonicParsing="false" />
                </graphic>
             </TableColumn>
-          <TableColumn fx:id="CategoryColumn" prefWidth="107.0" text="분류" />
-          <TableColumn fx:id="TitleColumn" minWidth="0.0" prefWidth="234.0" text="도서제목" />
-            <TableColumn fx:id="AuthorColumn" minWidth="3.0" prefWidth="139.0" text="저자" />
-            <TableColumn fx:id="PublisherColumn" prefWidth="128.0" text="출판사" />
-            <TableColumn fx:id="IsCheckOutedColumn" prefWidth="127.0" text="대출가능여부" />
+            <TableColumn fx:id="BookNoColumn" prefWidth="64.0" text="도서번호" />
+          <TableColumn fx:id="CategoryColumn" prefWidth="89.0" text="분류" />
+          <TableColumn fx:id="TitleColumn" minWidth="0.0" prefWidth="230.0" text="도서제목" />
+            <TableColumn fx:id="AuthorColumn" minWidth="3.0" prefWidth="115.0" text="저자" />
+            <TableColumn fx:id="PublisherColumn" prefWidth="98.0" text="출판사" />
+            <TableColumn fx:id="IsCheckOutedColumn" prefWidth="97.0" text="대출가능여부" />
+            <TableColumn fx:id="MemberColumn" prefWidth="160.0" text="대출자명" />
         </columns>
       </TableView>
       <ToolBar layoutX="847.0" layoutY="1.0" prefHeight="51.0" prefWidth="89.0">
