@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
@@ -10,43 +9,36 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="562.0" prefWidth="943.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CheckOutReturn_ManagementController">   
-	<children>      
-	<Label layoutX="385.0" layoutY="28.0" text="대출&amp;반납">         
-		<font>            
-			<Font name="휴먼중간팸체" size="44.0" />         
-		</font>      
-	</Label>
-      <TableView fx:id="MemberTableView" layoutX="21.0" layoutY="126.0" prefHeight="370.0" prefWidth="897.0">
+<AnchorPane prefHeight="562.0" prefWidth="943.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CheckOutReturn_ManagementController">   
+    <children>      
+    <Label layoutX="385.0" layoutY="28.0" text="대출&amp;반납">         
+        <font>            
+            <Font name="휴먼중간팸체" size="44.0" />         
+        </font>      
+    </Label>
+    <TableView fx:id="MemberTableView" layoutX="21.0" layoutY="126.0" prefHeight="370.0" prefWidth="897.0">
         <columns>
-            <TableColumn fx:id="checkBoxColumn" text = "Select" prefWidth="42.399959564208984">
-               <graphic>
-                  <CheckBox fx:id="membercheckbox" mnemonicParsing="false" />
-               </graphic>
+            <TableColumn fx:id="checkBoxColumn" prefWidth="42.399959564208984" text="Select">
+                <graphic>
+                    <CheckBox fx:id="membercheckbox" mnemonicParsing="false" />
+                </graphic>
             </TableColumn>
-          <TableColumn fx:id="memberNoColumn" prefWidth="60.0" text="회원번호" />
-          <TableColumn fx:id="memberIdColumn" minWidth="0.0" prefWidth="142.0" text="아이디" />
+            <TableColumn fx:id="memberNoColumn" prefWidth="60.0" text="회원번호" />
+            <TableColumn fx:id="memberIdColumn" minWidth="0.0" prefWidth="142.0" text="아이디" />
             <TableColumn fx:id="memberNameColumn" prefWidth="131.0" text="이름" />
             <TableColumn fx:id="eligibleColumn" prefWidth="116.0" text="대출가능여부 " />
             <TableColumn fx:id="checkOutLimitColumn" prefWidth="107.0" text="대출가능권수" />
             <TableColumn fx:id="birthdayColumn" prefWidth="139.0" text="생년 월일" />
             <TableColumn fx:id="phoneNumberColumn" prefWidth="158.0" text="연락처" />
         </columns>
-      </TableView>
-      <ToolBar layoutX="709.0" layoutY="1.0" prefHeight="51.0" prefWidth="227.0">
+    </TableView>
+    <ToolBar layoutX="20.0" layoutY="74.0" prefHeight="40.0" prefWidth="510.0">
         <items>
-          <Button fx:id="Home" mnemonicParsing="false" onAction="#handleHomeButtonAction" prefHeight="32.0" prefWidth="68.0" text="홈으로" />
-            <Button fx:id="LogOut" layoutX="10.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleLogOutButtonAction" prefHeight="32.0" prefWidth="68.0" text="로그아웃" />
-            <Button fx:id="Exit" layoutX="110.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleExitButtonAction" prefHeight="32.0" prefWidth="68.0" text="종료" />
+            <TextField fx:id="searchField" onKeyReleased="#handleSearch" promptText="검색..." prefHeight="22.0" prefWidth="417.0" />
+            <Button mnemonicParsing="false" onAction="#handleSearchButtonAction" prefHeight="23.0" prefWidth="53.0" text="조회" />
         </items>
-      </ToolBar>
-      <Button layoutX="96.0" layoutY="507.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="62.0" text="반납" />
-      <Button fx:id="CheckOutButton" layoutX="21.0" layoutY="507.0" mnemonicParsing="false" onAction="#handleCheckOutButtonAction" prefHeight="31.0" prefWidth="62.0" text="대출" />
-      <ToolBar layoutX="20.0" layoutY="74.0" prefHeight="40.0" prefWidth="486.0">
-         <items>
-            <TextField prefHeight="22.0" prefWidth="417.0" />
-            <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="53.0" text="조회" />
-         </items>
-      </ToolBar>   
-	</children>
+    </ToolBar>
+    <Button layoutX="96.0" layoutY="507.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="62.0" text="반납" />
+    <Button fx:id="CheckOutButton" layoutX="21.0" layoutY="507.0" mnemonicParsing="false" onAction="#handleCheckOutButtonAction" prefHeight="31.0" prefWidth="62.0" text="대출" />
+    </children>
 </AnchorPane>

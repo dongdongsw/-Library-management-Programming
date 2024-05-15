@@ -8,6 +8,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -15,6 +17,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 
@@ -46,6 +50,10 @@ public class CheckOutReturn_ManagementController {
     private TableColumn<Member, Boolean> checkBoxColumn;
     @FXML
     private CheckBox membercheckbox;
+    @FXML
+    private Button searchButton;
+    @FXML
+    private TextField searchField;
     
     @FXML //메시지를 보이게 만드는 기능 제공
     private Text messageText;
@@ -231,5 +239,33 @@ public class CheckOutReturn_ManagementController {
 		System.exit(0);
   		
 	}
+	
+	@FXML
+	private void handleSearchButtonAction(ActionEvent event) {
+	    search();
+	}
+
+	@FXML
+	private void handleSearch(KeyEvent event) {
+	    if (event.getCode() == KeyCode.ENTER) {
+	        search();
+	    }
+	}
+
+	private void search() {
+	    String query = searchField.getText().toLowerCase();
+	    ObservableList<Member> filteredList = FXCollections.observableArrayList();
+
+	    for (Member member : MemberList.getMembers()) {
+	        if (member.getMember_Id().toLowerCase().contains(query) ||
+	            member.getMember_Name().toLowerCase().contains(query) ||
+	            member.getPhoneNumber().toLowerCase().contains(query)) {
+	            filteredList.add(member);
+	        }
+	    }
+
+	    MemberTableView.setItems(filteredList);
+	}
+
 	
 }
