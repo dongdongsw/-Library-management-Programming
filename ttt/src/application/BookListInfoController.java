@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -19,16 +20,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-
-
-public class CheckOutReturn_ListController {
-    
-    @FXML
+public class BookListInfoController {
+	
+	@FXML
     private TableView<Book> BookTableView;
     private Member currentMember;
    
     @FXML
-    private Button CheckOutButton, PreviousPage, Exit;
+    private Button AddBook, DeleteBook, MainMenu, LogOut, Exit;
     @FXML
     private TableColumn<Book, String> BookNoColumn;
     @FXML
@@ -117,93 +116,54 @@ public class CheckOutReturn_ListController {
         });
     }
     
-    @FXML
-    private void handleCheckOutButtonAction(ActionEvent event) throws IOException {
-        //Book selectedBook = BookTableView.getSelectionModel().getSelectedItem();
-        
-        Book selectedBook = null;
-        for (Book book : BookTableView.getItems()) {
-            if (book.isSelected()) {
-                selectedBook = book;
-                break;
-            }
-        }
-        
-        if (selectedBook != null && "대출가능".equals(selectedBook.getIsCheckOuted())) {
-        	try {
-        	
-                
-             // 현재 선택된 책을 "대출중"으로 업데이트
-                selectedBook.checkOutBook(currentMember.getMember_Name(), currentMember.getMember_Id());
-                // 현재 회원의 대출 목록에 추가하고 대출 가능 수를 감소
-                currentMember.addBookToCheckedOut(selectedBook);
-                
-                bookList.updateBook(selectedBook); // BookList에 변경 사항 반영
-                BookTableView.refresh();
-                // UI 갱신
-                //BookTableView.refresh();
-                
-
-                // 메시지 창 로드
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Ui/CheckOutReturn/CheckOutReturn_message.fxml"));
-                Parent root = loader.load();
-                CheckOutReturn_MessageController controller = loader.getController();
-                controller.setMessage("대출이 완료되었습니다.");
-                showNewStage(root);
-                
-                //BookTableView 및 BookList 갱신
-                BookTableView.refresh();
-                BookList.getInstance().getAllBook().forEach(book -> System.out.println(book.getTitle() + ": " + book.getIsCheckOuted()));
-
-
-                // ManagementController로 돌아가기
-                FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/application/Ui/CheckOutReturn/CheckOutReturn_Management.fxml"));
-                Parent root1 = loader1.load();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root1));
-                stage.setTitle("도서 대출");
-                stage.show();
-
-                ((Stage) CheckOutButton.getScene().getWindow()).close();
-        	} catch (IOException e) {
-                e.printStackTrace(); 
-            }
-        }
-        else if("대출중".equals(selectedBook.getIsCheckOuted())) {
-        	try {
-        		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Ui/CheckOutReturn/CheckOutReturn_message.fxml"));
-        		Parent root = loader.load();
-        		CheckOutReturn_MessageController controller = loader.getController();
-        		controller.setMessage("현재 대출중인 도서입니다.");
-        		showNewStage(root);
-        	} catch(IOException e) {
-        		e.printStackTrace();
-        	}
-        	
-        }
-    }
-    @FXML
-	private void handlePreviousPageButtonAction(ActionEvent event) {
-		//이전으로 버튼을 클릭시 도서&반납화면으로 전환함.
-    	try {
-    		// ManagementController로 돌아가기
-            FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/application/Ui/CheckOutReturn/CheckOutReturn_Management.fxml"));
-            Parent root1 = loader1.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root1));
-            stage.setTitle("도서 대출");
-            stage.show();
-
-            ((Stage) CheckOutButton.getScene().getWindow()).close();
-    	} catch (IOException e) {
-            e.printStackTrace(); 
-        }
-    }
-
+    
     
     private void refreshMemberView() {
         BookTableView.refresh();
     }
+    @FXML 
+	private void handleMainMenuButtonAction(ActionEvent event) {
+		//메인메뉴 버튼을 눌렀을 때 대출&반납 메뉴가 꺼짐과 동시에 메인화면으로 전환
+		try {
+	
+			Parent Root = FXMLLoader.load(getClass().getResource("/application/Ui/Main/MainMenu.fxml"));
+            Scene scene = new Scene(Root);
+            scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+
+            
+         // 현재 스테이지 가져오기 (현재 이벤트가 발생한 Window를 기반으로)
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            
+            // 새로운 씬 설정하고 보이기
+            currentStage.setScene(scene);
+            currentStage.show();
+        } 
+		catch (IOException e) {
+        	e.printStackTrace();
+        }
+	}
+	@FXML
+	private void handleLogOutButtonAction(ActionEvent event) {
+		//로그아웃 버튼을 눌렀을 때 대출&반납 메뉴가 꺼짐과 동시에 로그인화면으로 전환
+		try {
+	
+			Parent Root = FXMLLoader.load(getClass().getResource("/application/Ui/Main/Login.fxml"));
+            Scene scene = new Scene(Root);
+            scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+
+            
+         // 현재 스테이지 가져오기 (현재 이벤트가 발생한 Window를 기반으로)
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            
+            // 새로운 씬 설정하고 보이기
+            currentStage.setScene(scene);
+            currentStage.show();
+        } 
+		catch (IOException e) {
+        	e.printStackTrace();
+        }
+  		
+	}
       
     @FXML
 	private void handleExitButtonAction(ActionEvent event) {
@@ -219,7 +179,4 @@ public class CheckOutReturn_ListController {
         stage.showAndWait();
     }
 
-    
 }
-    
- 

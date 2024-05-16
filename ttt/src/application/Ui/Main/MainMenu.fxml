@@ -6,34 +6,38 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="397.0" prefWidth="284.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainMenuController">
    <children>
-      <VBox layoutX="22.0" layoutY="98.0" prefHeight="287.0" prefWidth="240.0" spacing="15.0">
+      <VBox alignment="CENTER" layoutX="22.0" layoutY="98.0" prefHeight="287.0" prefWidth="240.0" spacing="15.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="246.0" text="도서&amp;회원 관리">
+            <Button fx:id="BookListInfo" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleBookListButtonAction" prefHeight="60.0" prefWidth="246.0" text="도서 관리">
                <font>
                   <Font name="휴먼중간팸체" size="33.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="246.0" text="대출&amp;반납 관리">
+            <Button fx:id="MembeListInfo" mnemonicParsing="false" onAction="#handleMemberListButtonAction" prefHeight="60.0" prefWidth="246.0" text="회원 관리">
                <font>
                   <Font name="휴먼중간팸체" size="33.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="246.0" text="로그아웃 하기">
+            <Button fx:id="CheckOutReturn" mnemonicParsing="false" onAction="#handleCheckOutReturnButtonAction" prefHeight="60.0" prefWidth="246.0" text="대출&amp;반납 ">
                <font>
                   <Font name="휴먼중간팸체" size="33.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="246.0" text="종료하기">
+            <Button fx:id="LogOut" mnemonicParsing="false" onAction="#handleLogOutButtonAction" prefHeight="60.0" prefWidth="246.0" text="로그아웃 ">
+               <font>
+                  <Font name="휴먼중간팸체" size="33.0" />
+               </font>
+            </Button>
+            <Button fx:id="Exit" mnemonicParsing="false" onAction="#handleExitButtonAction" prefHeight="60.0" prefWidth="246.0" text="종료하기">
                <font>
                   <Font name="휴먼중간팸체" size="33.0" />
                </font>
             </Button>
          </children>
       </VBox>
-      <Label contentDisplay="BOTTOM" layoutX="73.0" layoutY="24.0" prefHeight="60.0" prefWidth="138.0" text="메인 메뉴" textAlignment="CENTER" wrapText="true">
+      <Label alignment="CENTER" contentDisplay="BOTTOM" layoutY="14.0" prefHeight="60.0" prefWidth="300.0" text="메인 메뉴" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="휴먼중간팸체" size="46.0" />
          </font>

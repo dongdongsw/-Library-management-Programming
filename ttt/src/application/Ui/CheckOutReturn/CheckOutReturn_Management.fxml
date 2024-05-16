@@ -17,6 +17,13 @@
             <Font name="휴먼중간팸체" size="44.0" />         
         </font>      
     </Label>
+      <ToolBar layoutX="710.0" layoutY="8.0" prefHeight="42.0" prefWidth="225.0">
+         <items>
+            <Button fx:id="MainMenu" mnemonicParsing="false" onAction="#handleMainMenuButtonAction" prefHeight="32.0" prefWidth="68.0" text="메인메뉴" />
+            <Button fx:id="LogOut" mnemonicParsing="false" onAction="#handleLogOutButtonAction" prefHeight="32.0" prefWidth="68.0" text="로그아웃" />
+            <Button fx:id="Exit" mnemonicParsing="false" onAction="#handleExitButtonAction" prefHeight="32.0" prefWidth="68.0" text="종료" />
+         </items>
+      </ToolBar>
     <TableView fx:id="MemberTableView" layoutX="21.0" layoutY="126.0" prefHeight="370.0" prefWidth="897.0">
         <columns>
             <TableColumn fx:id="checkBoxColumn" prefWidth="42.399959564208984" text="Select">
@@ -37,7 +44,7 @@
             <Button mnemonicParsing="false" onAction="#handleSearchButtonAction" prefHeight="23.0" prefWidth="53.0" text="조회" />
         </items>
     </ToolBar>
-    <Button layoutX="96.0" layoutY="507.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="62.0" text="반납" />
+    <Button fx:id="ReturnButton" layoutX="96.0" layoutY="507.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="62.0" text="반납" />
     <Button fx:id="CheckOutButton" layoutX="21.0" layoutY="507.0" mnemonicParsing="false" onAction="#handleCheckOutButtonAction" prefHeight="31.0" prefWidth="62.0" text="대출" />
     </children>
 </AnchorPane>

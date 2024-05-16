@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="562.0" prefWidth="943.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CheckOutReturn_ListController">   
+<AnchorPane prefHeight="562.0" prefWidth="943.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.BookListInfoController">   
 	<children>      
 	<Label layoutX="388.0" layoutY="22.0" text="도서목록">         
 		<font>            
@@ -33,18 +33,20 @@
             <TableColumn fx:id="MemberColumn" prefWidth="160.0" text="대출자명" />
         </columns>
       </TableView>
-      <ToolBar layoutX="775.0" layoutY="1.0" prefHeight="51.0" prefWidth="161.0">
+      <ToolBar layoutX="705.0" layoutY="1.0" prefHeight="51.0" prefWidth="231.0">
         <items>
-            <Button fx:id="PreviousPage" mnemonicParsing="false" onAction="#handlePreviousPageButtonAction" prefHeight="32.0" prefWidth="68.0" text="이전화면" />
+            <Button fx:id="MainMenu" mnemonicParsing="false" onAction="#handleMainMenuButtonAction" prefHeight="32.0" prefWidth="68.0" text="메인메뉴" />
+            <Button fx:id="LogOut" mnemonicParsing="false" onAction="#handleLogOutButtonAction" prefHeight="32.0" prefWidth="68.0" text="로그아웃" />
             <Button fx:id="Exit" layoutX="110.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleExitButtonAction" prefHeight="32.0" prefWidth="68.0" text="종료" />
         </items>
       </ToolBar>
-      <Button fx:id="CheckOutButton" layoutX="21.0" layoutY="507.0" mnemonicParsing="false" onAction="#handleCheckOutButtonAction" prefHeight="31.0" prefWidth="62.0" text="대출" />
       <ToolBar layoutX="20.0" layoutY="74.0" prefHeight="40.0" prefWidth="486.0">
          <items>
             <TextField prefHeight="22.0" prefWidth="417.0" />
             <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="53.0" text="조회" />
          </items>
-      </ToolBar>   
+      </ToolBar>
+      <Button fx:id="AddBook" layoutX="20.0" layoutY="506.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="68.0" text="추가" />
+      <Button fx:id="DeleteBook" layoutX="102.0" layoutY="506.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="68.0" text="삭제" />   
 	</children>
 </AnchorPane>

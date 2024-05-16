@@ -21,13 +21,10 @@ import javafx.scene.control.TextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-
-
-
-
-public class CheckOutReturn_ManagementController {
+public class MemberManagementController {
+	
 	@FXML
-	private Button MainMenu, LogOut, Exit, CheckOutButton;
+	private Button MainMenu, LogOut, Exit;
 	
 	@FXML
     private TableView<Member> MemberTableView;
@@ -77,7 +74,8 @@ public class CheckOutReturn_ManagementController {
         memberNameColumn.setCellValueFactory(new PropertyValueFactory<>("Member_Name"));
         eligibleColumn.setCellValueFactory(new PropertyValueFactory<>("CheckOutEligible"));
         checkOutLimitColumn.setCellValueFactory(new PropertyValueFactory<>("CheckOutLimit"));
-       
+        birthdayColumn.setCellValueFactory(new PropertyValueFactory<>("Birthday"));
+        phoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("PhoneNumber"));
         
     	
         // MemberList의 데이터를 TableView에 설정
@@ -100,98 +98,8 @@ public class CheckOutReturn_ManagementController {
             })
         );
     }
-   
     
-    
- // 대출 버튼 클릭 이벤트 핸들러
-    @FXML
-    private void handleCheckOutButtonAction(ActionEvent event) {
-        Member selectedMember = MemberTableView.getSelectionModel().getSelectedItem();
-        ObservableList<Member> members = MemberTableView.getItems();
-        for (Member member : members) {
-            if (member.isSelected()) {
-                // 체크된 멤버를 selectedMember로 처리
-                selectedMember = member;
-                break; // 또는 계속해서 모든 체크된 멤버를 처리
-            }
-        }
-        
-        if (selectedMember == null) {
-        	try {
-                // 메시지 창 로드
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Ui/CheckOutReturn/CheckOutReturn_message.fxml"));
-                Parent root = loader.load();
-                CheckOutReturn_MessageController controller = loader.getController();
-                controller.setMessage("회원이 선택되지 않았습니다.");
-                showNewStage(root);
-                return;
-        	}
-        	catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        if (selectedMember != null && selectedMember.getCheckOutLimit() > 0 && "O".equals(selectedMember.getCheckOutEligible())) {
-            try {
-                // CheckOutReturn_List.fxml 로드
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Ui/CheckOutReturn/CheckOutReturn_List.fxml"));
-                Parent root = loader.load();
-                CheckOutReturn_ListController ListController = loader.getController();
-                
-             // 선택된 회원과 책 목록을 ListController에 전달
-                Member selectedmember = selectedMember; // 선택된 회원 가져오는 메소드
-                ListController.setMember(selectedMember);
-                ListController.setBookList(availableBooks);
-             
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                stage.setTitle("도서 대출");
-                stage.show();
-
-                // 현재 창 닫기
-                ((Stage) CheckOutButton.getScene().getWindow()).close();
-            } 
-            catch (IOException e) {
-                e.printStackTrace();
-            }
-           
-        } 
-        else {
-            // 에러 메시지 표시
-        	try {
-                // 메시지 창 로드
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Ui/CheckOutReturn/CheckOutReturn_message.fxml"));
-                Parent root = loader.load();
-                CheckOutReturn_MessageController controller = loader.getController();
-
-                // 상황에 따른 메시지 설정
-                if ("X".equals(selectedMember.getCheckOutEligible())) {
-                    controller.setMessage("대출이 불가능한 상태입니다.");
-                    showNewStage(root);
-                    return;
-                }
-
-                if (selectedMember.getCheckOutLimit() == 0) {
-                    controller.setMessage("대출 가능한 도서의 수가 없습니다.");
-                    showNewStage(root);
-                    return;
-                }
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        	
-        }
-    }
-  
-    
-    // 새 창에서 메시지 보여주는 메소드
-    private void showNewStage(Parent root) {
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.showAndWait();
-    }
- 
-	@FXML 
+    @FXML 
 	private void handleMainMenuButtonAction(ActionEvent event) {
 		//메인메뉴 버튼을 눌렀을 때 대출&반납 메뉴가 꺼짐과 동시에 메인화면으로 전환
 		try {
@@ -268,5 +176,4 @@ public class CheckOutReturn_ManagementController {
 	    MemberTableView.setItems(filteredList);
 	}
 
-	
 }
