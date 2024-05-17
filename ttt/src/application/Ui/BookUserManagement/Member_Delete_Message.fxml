@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="276.0" prefWidth="432.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DeleteMemberController">
+   <children>
+      <StackPane layoutX="61.0" layoutY="39.0" prefHeight="150.0" prefWidth="310.0">
+         <children>
+            <Text fx:id="Message1" strokeType="OUTSIDE" strokeWidth="0.0" text="선택한 회원에 대한 모든 데이터가 삭제됩니다." textAlignment="CENTER" wrappingWidth="341.5504150390625">
+               <font>
+                  <Font name="Cafe24 Ssurround air" size="15.0" />
+               </font>
+            </Text>
+         </children>
+      </StackPane>
+      <Text fx:id="Message2" layoutX="72.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="정말 삭제하시겠습니까?" textAlignment="CENTER" wrappingWidth="287.150390625">
+         <font>
+            <Font name="Cafe24 Ssurround air" size="14.0" />
+         </font>
+      </Text>
+      <Button fx:id="Delete" layoutX="101.0" layoutY="220.0" mnemonicParsing="false" onAction="#handleConfirmDeleteButtonAction" prefHeight="18.0" prefWidth="100.0" text="삭제" textAlignment="CENTER">
+         <font>
+            <Font name="Cafe24 Ssurround air" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="Cancel" layoutX="224.0" layoutY="220.0" mnemonicParsing="false" onAction="#handleCancelButtonAction" prefHeight="18.0" prefWidth="100.0" text="취소" textAlignment="CENTER">
+         <font>
+            <Font name="Cafe24 Ssurround air" size="15.0" />
+         </font>
+      </Button>
+      <TextField fx:id="Title" layoutY="-1.0" prefHeight="22.0" prefWidth="432.0" text="회원 삭제">
+         <font>
+            <Font name="Cafe24 Ssurround air" size="17.0" />
+         </font>
+      </TextField>
+   </children>
+</AnchorPane>

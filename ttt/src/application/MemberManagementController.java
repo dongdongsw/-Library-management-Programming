@@ -1,5 +1,6 @@
 package application;
 
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -24,7 +25,7 @@ import javafx.collections.ObservableList;
 public class MemberManagementController {
 	
 	@FXML
-	private Button MainMenu, LogOut, Exit;
+	private Button AddMember, DeleteMember, MainMenu, LogOut, Exit;
 	
 	@FXML
     private TableView<Member> MemberTableView;
@@ -61,12 +62,11 @@ public class MemberManagementController {
     
     
     private MemberList Member = MemberList.getInstance(); // MemberList 인스턴스 생성
-    private BookList availableBooks = BookList.getInstance(); // 사용 가능한 책 목록
-
+    private BookList bookList = BookList.getInstance(); // 사용 가능한 책 목록
+    private ObservableList<Member> members = Member.getMembers();
     
     
-    
-
+   
     @FXML
     private void initialize() {
     	memberNoColumn.setCellValueFactory(new PropertyValueFactory<>("Member_No"));
@@ -77,6 +77,8 @@ public class MemberManagementController {
         birthdayColumn.setCellValueFactory(new PropertyValueFactory<>("Birthday"));
         phoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("PhoneNumber"));
         
+        
+        MemberTableView.setItems(Member.getMembers());
     	
         // MemberList의 데이터를 TableView에 설정
         MemberTableView.setItems(Member.getInstance().getMembers());
@@ -100,8 +102,58 @@ public class MemberManagementController {
     }
     
     @FXML 
+    private void handleAddMemberButtonAction(ActionEvent event) {
+    	//추가 버튼을 누르면 추가할 회원 정보를 입력 후 추가를 누르면 회원 목록에 추가된
+    	// 추가 버튼을 누르면 새로운 창에서 AddMemberController를 로드
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Ui/BookUserManagement/AddMember.fxml"));
+            Parent root = loader.load();
+         // AddMemberController 인스턴스를 가져와서 MemberManagementController 인스턴스를 설정
+            AddMemberController addMemberController = loader.getController();
+            addMemberController.setMemberManagementController(this);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.showAndWait(); // 새로운 창을 모달로 표시
+            refreshTable();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    	
+    }
+    
+    @FXML
+    private void handleDeleteMemberButtonAction(ActionEvent event) {
+    	//ObservableList<Member> selectedMembers = members.filtered(member -> member.isSelected());
+    	ObservableList<Member> selectedMembers = FXCollections.observableArrayList(members.filtered(member -> member.isSelected()));
+
+        for (Member member : selectedMembers) {
+            boolean isCheckedOut = bookList.getBookList().stream().anyMatch(book -> 
+                book.getCheckOutedName().equals(member.getMember_Name()) && 
+                book.getCheckOutedId().equals(member.getMember_Id())
+            );
+
+            if (isCheckedOut) {
+                showMessage("도서 대출중인 회원은 삭제가 불가능 합니다.");
+                return;
+            } else {
+                showDeleteConfirmationDialog(member);
+            }
+        }
+    	
+    }
+    
+    
+    // 테이블 새로고침 매서드
+    void refreshTable() {
+    	MemberTableView.setItems(FXCollections.observableArrayList(Member.getMembers()));
+        MemberTableView.refresh();
+       
+    }
+    
+    @FXML 
 	private void handleMainMenuButtonAction(ActionEvent event) {
-		//메인메뉴 버튼을 눌렀을 때 대출&반납 메뉴가 꺼짐과 동시에 메인화면으로 전환
+		//메인메뉴 버튼을 눌렀을 때 회원목록 화면 꺼짐과 동시에 메인화면으로 전환
 		try {
 	
 			Parent Root = FXMLLoader.load(getClass().getResource("/application/Ui/Main/MainMenu.fxml"));
@@ -122,7 +174,7 @@ public class MemberManagementController {
 	}
 	@FXML
 	private void handleLogOutButtonAction(ActionEvent event) {
-		//로그아웃 버튼을 눌렀을 때 대출&반납 메뉴가 꺼짐과 동시에 로그인화면으로 전환
+		//로그아웃 버튼을 눌렀을 때 회원목록 화면 꺼짐과 동시에 로그인화면으로 전환
 		try {
 	
 			Parent Root = FXMLLoader.load(getClass().getResource("/application/Ui/Main/Login.fxml"));
@@ -175,5 +227,64 @@ public class MemberManagementController {
 
 	    MemberTableView.setItems(filteredList);
 	}
+	
+	// 새 창에서 메시지 보여주는 메소드
+    private void showMessage(String message) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Ui/CheckOutReturn/CheckOutReturn_message.fxml"));
+            Parent root = loader.load();
+            CheckOutReturn_MessageController controller = loader.getController();
+            controller.setMessage(message);
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void showDeleteConfirmationDialog(Member member) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Ui/BookUserManagement/Member_Delete_Message.fxml"));
+            Parent root = loader.load();
+            
+            DeleteMemberController controller = loader.getController();
+            controller.setMember(member);
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+            
+            if (controller.isConfirmed()) {
+            	showMessage("회원 삭제가 완료되었습니다.");
+                Member.removeMember(member);
+                refreshTable();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
+    
+ // Setters for memberList and bookList
+    public void setMemberList(MemberList memberList) {
+        this.Member = memberList;
+    }
+
+    public void setBookList(BookList bookList) {
+        this.bookList = bookList;
+    }
+    
+    public void refreshMemberList() {
+        MemberTableView.refresh();
+    }
+
+    public void removeMember(Member member) {
+        members.remove(member);
+        refreshMemberList();
+    }
+
+	
 
 }

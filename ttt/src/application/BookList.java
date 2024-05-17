@@ -1,5 +1,7 @@
 package application;
 
+import java.util.stream.Stream;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.util.Callback;
@@ -54,6 +56,20 @@ public class BookList {
     		}
     	}
     }
+
+ // stream 메서드 추가
+    public Stream<Book> stream() {
+        return Books.stream();
+    }
+
+    public ObservableList<Book> getBookList() {
+        return Books;
+    }
+
+
+	
+
+	
 
 
 }

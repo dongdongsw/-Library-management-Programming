@@ -22,19 +22,6 @@ public class Book {
 	
 	private BooleanProperty selected = new SimpleBooleanProperty();
 
-	/*
-    public final BooleanProperty selectedProperty() {
-        return this.selected;
-    }
-
-    public final boolean isSelected() {
-        return this.selectedProperty().get();
-    }
-
-    public final void setSelected(final boolean selected) {
-        this.selectedProperty().set(selected);
-    }
-	*/
 	// 생성자
     public Book(String Book_No, String Category, String Title, String Author, String Publisher, String IsCheckOuted) {
     	this.Book_No = Book_No;

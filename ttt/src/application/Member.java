@@ -5,6 +5,7 @@ import java.util.List;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.scene.control.CheckBox;
 
 import java.util.*;
 
@@ -16,37 +17,11 @@ public class Member {
 	public int CheckOutLimit;
 	private String Birthday;
 	private String PhoneNumber;
+	private CheckBox checkBox;
 	private List<Book> CheckOut = new ArrayList<>();
+	private final BooleanProperty selected; // 추가된 선택 여부 속성
 	
-	/*	
-	private final BooleanProperty selected = new SimpleBooleanProperty();
 
-    public BooleanProperty selectedProperty() {
-        return selected;
-    }
-
-    public boolean isSelected() {
-        return selected.get();
-    }
-
-    public void setSelected(boolean selected) {
-        this.selected.set(selected);
-    }
-	*/
-	
-	private BooleanProperty selected = new SimpleBooleanProperty();
-
-    public final BooleanProperty selectedProperty() {
-        return this.selected;
-    }
-
-    public final boolean isSelected() {
-        return this.selectedProperty().get();
-    }
-
-    public final void setSelected(final boolean selected) {
-        this.selectedProperty().set(selected);
-    }
 	// 생성자
 	public Member(String Member_No, String Member_Id, String Member_Name, String CheckOutEligible, int CheckOutLimit, String Birthday, String PhoneNumber) {
         this.Member_No = Member_No;
@@ -57,6 +32,8 @@ public class Member {
         this.Birthday = Birthday;
         this.PhoneNumber = PhoneNumber;
         this.CheckOut = new ArrayList<>();
+        this.checkBox = new CheckBox();
+        this.selected = new SimpleBooleanProperty(false); // 초기화
     }
 	
 	 public String getMember_No() {
@@ -112,5 +89,33 @@ public class Member {
 		 this.CheckOut.add(book);
 		 this.CheckOutLimit--;
 	 }
+	 
+	 public CheckBox getCheckBox() {
+		 return checkBox;
+	    }
+
+	 public boolean isCheckBoxSelected() {
+		 return checkBox.isSelected();
+	    }
+	 
+	 public void setCheckBoxSelected(boolean selected) {
+		 checkBox.setSelected(selected);
+	    }
+	// Getter and setter for selected
+	
+	 public boolean isSelected() {
+		 return selected.get();
+	    }
+
+	 public void setSelected(boolean selected) {
+		 this.selected.set(selected);
+	    }
+
+	 public BooleanProperty selectedProperty() {
+		 return selected;
+	    }
+
+	 
+	
 
 }

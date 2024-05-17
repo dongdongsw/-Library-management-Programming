@@ -26,8 +26,8 @@
             </TableColumn>
           <TableColumn fx:id="memberNoColumn" prefWidth="60.0" text="회원번호" />
           <TableColumn fx:id="memberIdColumn" minWidth="0.0" prefWidth="169.59999084472656" text="아이디" />
-            <TableColumn fx:id="memberNameColumn" prefWidth="123.0" text="이름" />
-            <TableColumn fx:id="eligibleColumn" prefWidth="70.0" text="대출가능여부" />
+            <TableColumn fx:id="memberNameColumn" prefWidth="112.0" text="이름" />
+            <TableColumn fx:id="eligibleColumn" prefWidth="81.0" text="대출가능여부" />
             <TableColumn fx:id="checkOutLimitColumn" prefWidth="91.0" text="대출가능권수" />
             <TableColumn fx:id="birthdayColumn" prefWidth="145.0" text="생년 월일" />
             <TableColumn fx:id="phoneNumberColumn" prefWidth="194.0" text="연락처" />
@@ -35,13 +35,13 @@
       </TableView>
       <ToolBar layoutX="707.0" layoutY="1.0" prefHeight="42.0" prefWidth="231.0">
         <items>
-          <Button fx:id="MAinMenu" mnemonicParsing="false" onAction="#handleMainMenuButtonAction" prefHeight="32.0" prefWidth="68.0" text="메인메뉴" />
+          <Button fx:id="MainMenu" mnemonicParsing="false" onAction="#handleMainMenuButtonAction" prefHeight="32.0" prefWidth="68.0" text="메인메뉴" />
             <Button fx:id="LogOut" mnemonicParsing="false" onAction="#handleLogOutButtonAction" prefHeight="32.0" prefWidth="68.0" text="로그아웃" />
             <Button fx:id="Exit" layoutX="10.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleExitButtonAction" prefHeight="32.0" prefWidth="68.0" text="종료" />
         </items>
       </ToolBar>
-      <Button layoutX="96.0" layoutY="507.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="62.0" text="삭제" />
-      <Button layoutX="21.0" layoutY="507.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="62.0" text="추가" />
+      <Button fx:id="DeleteMember" layoutX="96.0" layoutY="507.0" mnemonicParsing="false" onAction="#handleDeleteMemberButtonAction" prefHeight="31.0" prefWidth="62.0" text="삭제" />
+      <Button fx:id="AddMember" layoutX="21.0" layoutY="507.0" mnemonicParsing="false" onAction="#handleAddMemberButtonAction" prefHeight="31.0" prefWidth="62.0" text="추가" />
       <ToolBar layoutX="20.0" layoutY="74.0" prefHeight="40.0" prefWidth="486.0">
          <items>
             <TextField fx:id="searchField" onKeyReleased="#handleSearch" prefHeight="22.0" prefWidth="417.0" promptText="검색..." />
