@@ -9,7 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.fxml.FXMLLoader;
-
+import javafx.scene.Node;
 
 public class MainController {
 
@@ -26,20 +26,26 @@ public class MainController {
         if (LoginController.checkLogin(username, password)) {
             lblStatus.setText("Login Success");
             try {
-            	Stage primaryStage = new Stage();
+                // 현재 스테이지(로그인 창)를 가져옵니다.
+                Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                
+                // 새로운 창(메인 메뉴)을 로드합니다.
                 Parent root = FXMLLoader.load(getClass().getResource("/application/Ui/Main/MainMenu.fxml"));
                 Scene scene = new Scene(root);
                 scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+                
+                // 메인 메뉴를 위한 새로운 스테이지를 만듭니다.
+                Stage primaryStage = new Stage();
                 primaryStage.setScene(scene);
                 primaryStage.show();
+                
+                // 현재 스테이지(로그인 창)를 닫습니다.
+                currentStage.close();
             } catch (IOException e) {
-            	e.printStackTrace();
+                e.printStackTrace();
             }
         } else {
             lblStatus.setText("Login Failed");
         }
     }
 }
-
-			
-	
