@@ -21,6 +21,8 @@ public class Member {
 	private List<Book> CheckOut = new ArrayList<>();
 	private final BooleanProperty selected; // 추가된 선택 여부 속성
 	
+	
+	
 
 	// 생성자
 	public Member(String Member_No, String Member_Id, String Member_Name, String CheckOutEligible, int CheckOutLimit, String Birthday, String PhoneNumber) {
@@ -115,7 +117,24 @@ public class Member {
 		 return selected;
 	    }
 
-	 
+	// 대출한 도서 목록 반환 메서드
+	    public List<Book> getBorrowedBooks() {
+	        return CheckOut;
+	    }
+
+	    // 대출한 도서 추가 메서드
+	    public void addBorrowedBook(Book book) {
+	        CheckOut.add(book);
+	    }
+
+	    // 대출한 도서 제거 메서드
+	    public void removeBorrowedBook(Book book) {
+	        CheckOut.remove(book);
+	    }
+	    
+	    public void increaseCheckOutLimit() {
+	        this.CheckOutLimit++;
+	    }
 	
 
 }

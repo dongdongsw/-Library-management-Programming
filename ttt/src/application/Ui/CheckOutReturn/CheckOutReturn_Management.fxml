@@ -44,7 +44,7 @@
             <Button mnemonicParsing="false" onAction="#handleSearchButtonAction" prefHeight="23.0" prefWidth="53.0" text="조회" />
         </items>
     </ToolBar>
-    <Button fx:id="ReturnButton" layoutX="96.0" layoutY="507.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="62.0" text="반납" />
+    <Button fx:id="ReturnButton" layoutX="96.0" layoutY="507.0" mnemonicParsing="false" onAction="#handleReturnButtonAction" prefHeight="31.0" prefWidth="62.0" text="반납" />
     <Button fx:id="CheckOutButton" layoutX="21.0" layoutY="507.0" mnemonicParsing="false" onAction="#handleCheckOutButtonAction" prefHeight="31.0" prefWidth="62.0" text="대출" />
     </children>
 </AnchorPane>

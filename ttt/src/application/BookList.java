@@ -1,5 +1,7 @@
 package application;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
@@ -65,11 +67,6 @@ public class BookList {
     public ObservableList<Book> getBookList() {
         return Books;
     }
-
-
-	
-
-	
-
+  
 
 }

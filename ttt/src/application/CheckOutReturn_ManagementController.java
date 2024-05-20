@@ -4,6 +4,9 @@ import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.cell.CheckBoxTableCell;
@@ -27,7 +30,7 @@ import javafx.collections.ObservableList;
 
 public class CheckOutReturn_ManagementController {
 	@FXML
-	private Button MainMenu, LogOut, Exit, CheckOutButton;
+	private Button MainMenu, LogOut, Exit, CheckOutButton, ReturnButton;
 	
 	@FXML
     private TableView<Member> MemberTableView;
@@ -65,8 +68,9 @@ public class CheckOutReturn_ManagementController {
     
     private MemberList Member = MemberList.getInstance(); // MemberList 인스턴스 생성
     private BookList availableBooks = BookList.getInstance(); // 사용 가능한 책 목록
+  
 
-    
+   
     
     
 
@@ -182,7 +186,74 @@ public class CheckOutReturn_ManagementController {
         	
         }
     }
-  
+   
+    //반납 버튼 클릭시 이벤트 핸들러
+    @FXML
+    private void handleReturnButtonAction(ActionEvent event) {
+    	Member selectedMember = MemberTableView.getSelectionModel().getSelectedItem();
+        ObservableList<Member> members = MemberTableView.getItems();
+        for (Member member : members) {
+            if (member.isSelected()) {
+                // 체크된 멤버를 selectedMember로 처리
+                selectedMember = member;
+                break; // 또는 계속해서 모든 체크된 멤버를 처리
+            }
+        }
+        
+        if (selectedMember == null) {
+        	try {
+                // 메시지 창 로드
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Ui/CheckOutReturn/CheckOutReturn_message.fxml"));
+                Parent root = loader.load();
+                CheckOutReturn_MessageController controller = loader.getController();
+                controller.setMessage("회원이 선택되지 않았습니다.");
+                showNewStage(root);
+                return;
+        	}
+        	catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        if (selectedMember.getBorrowedBooks().isEmpty()) {
+        	// 대출한 도서가 없는 경우
+        	try {
+                // 메시지 창 로드
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Ui/CheckOutReturn/CheckOutReturn_message.fxml"));
+                Parent root = loader.load();
+                CheckOutReturn_MessageController controller = loader.getController();
+                controller.setMessage("대출한 도서가 존재하지 않습니다.");
+                showNewStage(root);
+                return;
+        	}
+        	catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        else {
+        	// 대출한 도서가 있는 경우
+            try {
+                // FXML 파일 로드
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Ui/CheckOutReturn/CheckOutReturn_Return_List.fxml"));
+                Stage stage = new Stage();
+                stage.setScene(new Scene(loader.load()));
+
+                // ReturnBookController 설정
+                ReturnBookController returnBookController = loader.getController();
+                returnBookController.setMember(selectedMember);
+                returnBookController.setManagementController(this);
+                returnBookController.showBorrowedBooks();
+
+                // 화면 표시
+                stage.show();
+                
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    	
+    }
     
     // 새 창에서 메시지 보여주는 메소드
     private void showNewStage(Parent root) {
@@ -268,5 +339,19 @@ public class CheckOutReturn_ManagementController {
 	    MemberTableView.setItems(filteredList);
 	}
 
+	public void refreshMemberAndBookData() {
+		ObservableList<Member> updatedMemberList = FXCollections.observableArrayList(MemberList.getInstance().getMembers());
+	    System.out.println("Updated Member List: " + updatedMemberList);
+	    MemberTableView.setItems(updatedMemberList);
+	    MemberTableView.refresh();
+		
+	}
+
 	
+	
+ // 모든 회원을 가져오는 예시 메서드
+    private List<Member> getAllMembers() {
+        // 실제 구현에 맞게 데이터를 가져오는 로직을 추가
+        return new ArrayList<>();
+    }
 }

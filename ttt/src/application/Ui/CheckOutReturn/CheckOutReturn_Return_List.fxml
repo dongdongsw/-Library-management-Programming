@@ -9,32 +9,32 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="936.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">   
+<AnchorPane prefHeight="400.0" prefWidth="936.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ReturnBookController">   
 	<children>      
 	<Label layoutX="385.0" layoutY="28.0" text="대출도서목록">         
 		<font>            
 			<Font name="휴먼중간팸체" size="44.0" />         
 		</font>      
 	</Label>
-      <TableView layoutX="21.0" layoutY="126.0" prefHeight="200.0" prefWidth="905.0">
+      <TableView fx:id="ReturnBookTableView" layoutX="21.0" layoutY="126.0" prefHeight="200.0" prefWidth="905.0">
         <columns>
-            <TableColumn prefWidth="42.399959564208984">
+            <TableColumn fx:id="CheckBoxColumn" prefWidth="42.399959564208984">
                <graphic>
-                  <CheckBox mnemonicParsing="false" />
+                  <CheckBox fx:id="SelcectBookCheckBox" mnemonicParsing="false" />
                </graphic>
             </TableColumn>
-          <TableColumn prefWidth="60.0" text="분류" />
-          <TableColumn minWidth="0.0" prefWidth="236.0" text="도서제목" />
-            <TableColumn minWidth="3.0" prefWidth="97.0" text="저자" />
-            <TableColumn prefWidth="175.0" text="출판사" />
-            <TableColumn prefWidth="140.0" text="대출일자" />
+          <TableColumn fx:id="BookNoColumn" prefWidth="64.0" text="도서번호" />
+          <TableColumn fx:id="CategoryColumn" minWidth="0.0" prefWidth="89.0" text="분류" />
+            <TableColumn fx:id="TitleColumn" minWidth="3.0" prefWidth="230.0" text="제목" />
+            <TableColumn fx:id="AuthorColumn" prefWidth="150.0" text="저자" />
+            <TableColumn fx:id="PublisherColumn" prefWidth="150.0" text="출판사" />
         </columns>
       </TableView>
       <ToolBar layoutX="847.0" layoutY="1.0" prefHeight="51.0" prefWidth="89.0">
         <items>
-            <Button layoutX="110.0" layoutY="14.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="68.0" text="종료" />
+            <Button fx:id="CloseButton" layoutX="110.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleCancelButtonAction" prefHeight="32.0" prefWidth="68.0" text="닫기" />
         </items>
       </ToolBar>
-      <Button layoutX="21.0" layoutY="350.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="62.0" text="반납" />   
+      <Button fx:id="ReturnButton" layoutX="21.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleReturnBookButtonAction" prefHeight="31.0" prefWidth="62.0" text="반납" />   
 	</children>
 </AnchorPane>
