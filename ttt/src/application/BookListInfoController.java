@@ -118,8 +118,29 @@ public class BookListInfoController {
     
     
     
+    
     private void refreshMemberView() {
         BookTableView.refresh();
+    }
+    
+    @FXML 
+    private void handleAddBookButtonAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Ui/BookUserManagement/AddBook.fxml"));
+            Parent root = loader.load();
+            
+         // AddBookController를 가져와서 bookListInfoController를 설정
+            AddBookController addBookController = loader.getController();
+            addBookController.setBookListInfoController(this); // 현재 BookListInfoController를 전달
+            
+            
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.showAndWait(); // 새로운 창을 모달로 표시
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    	
     }
     @FXML 
 	private void handleMainMenuButtonAction(ActionEvent event) {
@@ -177,6 +198,13 @@ public class BookListInfoController {
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.showAndWait();
+    }
+    
+ // 테이블 새로고침 매서드
+    void refreshTable() {
+    	BookTableView.setItems(FXCollections.observableArrayList(bookList.getAllBook()));
+        BookTableView.refresh();
+       
     }
 
 }

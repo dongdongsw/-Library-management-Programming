@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="473.0" prefWidth="372.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AddBookController">
+   <children>
+      <Button fx:id="AddBook" layoutX="50.0" layoutY="429.0" mnemonicParsing="false" onAction="#handleAddButton" prefHeight="18.0" prefWidth="100.0" text="추가" textAlignment="CENTER">
+         <font>
+            <Font name="Cafe24 Ssurround air" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="Cancel" layoutX="186.0" layoutY="429.0" mnemonicParsing="false" onAction="#handleCancelButtonAction" prefHeight="18.0" prefWidth="100.0" text="취소" textAlignment="CENTER">
+         <font>
+            <Font name="Cafe24 Ssurround air" size="15.0" />
+         </font>
+      </Button>
+      <TextField layoutY="-1.0" prefHeight="38.0" prefWidth="372.0" text="도서 정보 ">
+         <font>
+            <Font name="Cafe24 Ssurround air" size="17.0" />
+         </font>
+      </TextField>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cafeff" height="111.0" layoutX="12.0" layoutY="53.0" stroke="BLACK" strokeType="INSIDE" width="120.0" />
+      <VBox layoutX="12.0" layoutY="181.0" prefHeight="242.0" prefWidth="360.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="354.0" spacing="20.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="도서번호">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="Book_No" prefHeight="26.0" prefWidth="235.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="360.0" spacing="60.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="분류">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="Category" prefHeight="26.0" prefWidth="235.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="354.0" spacing="20.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="도서제목">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="Title" prefHeight="26.0" prefWidth="235.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="354.0" spacing="60.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="저자">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="Author" prefHeight="26.0" prefWidth="235.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="354.0" spacing="40.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="출판사">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="Publisher" prefHeight="26.0" prefWidth="235.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

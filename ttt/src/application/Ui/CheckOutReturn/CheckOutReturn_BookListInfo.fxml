@@ -46,7 +46,7 @@
             <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="53.0" text="조회" />
          </items>
       </ToolBar>
-      <Button fx:id="AddBook" layoutX="20.0" layoutY="506.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="68.0" text="추가" />
+      <Button fx:id="AddBook" layoutX="20.0" layoutY="506.0" mnemonicParsing="false" onAction="#handleAddBookButtonAction" prefHeight="32.0" prefWidth="68.0" text="추가" />
       <Button fx:id="DeleteBook" layoutX="102.0" layoutY="506.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="68.0" text="삭제" />   
 	</children>
 </AnchorPane>

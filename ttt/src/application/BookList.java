@@ -67,6 +67,10 @@ public class BookList {
     public ObservableList<Book> getBookList() {
         return Books;
     }
-  
+    
+    //도서 추가
+    public void add(Book book) {
+		Books.add(book);	
+	}
 
 }
