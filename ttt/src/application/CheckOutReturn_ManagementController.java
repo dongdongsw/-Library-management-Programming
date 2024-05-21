@@ -16,6 +16,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
@@ -34,7 +35,8 @@ public class CheckOutReturn_ManagementController {
 	
 	@FXML
     private TableView<Member> MemberTableView;
-	
+	@FXML
+	private ComboBox<String> SearchStandard;
     @FXML
     private TableColumn<Member, String> memberNoColumn;
     @FXML
@@ -86,6 +88,9 @@ public class CheckOutReturn_ManagementController {
     	
         // MemberList의 데이터를 TableView에 설정
         MemberTableView.setItems(Member.getInstance().getMembers());
+        
+        //검색시 선택할 기준
+        SearchStandard.setItems(FXCollections.observableArrayList("아이디", "이름"));
            
         
      // 체크박스 칼럼 설정
@@ -314,15 +319,20 @@ public class CheckOutReturn_ManagementController {
 	private void search() {
 	    String query = searchField.getText().toLowerCase();
 	    ObservableList<Member> filteredList = FXCollections.observableArrayList();
+	    String searchStandard = SearchStandard.getValue();
 
 	    for (Member member : Member.getMembers()) {
-	        if (member.getMember_Id().toLowerCase().contains(query) ||
-	            member.getMember_Name().toLowerCase().contains(query) ||
-	            member.getPhoneNumber().toLowerCase().contains(query)) {
-	            filteredList.add(member);
-	        }
+	    	if("아이디".equals(searchStandard)) {
+	    		if(member.getMember_Id().toLowerCase().contains(query)) {
+	    			filteredList.add(member);
+	    		}
+	    	}
+	    	else if("이름".equals(searchStandard)) {
+	    		if(member.getMember_Name().toLowerCase().contains(query)) {
+	    			filteredList.add(member);
+	    		}
+	    	}
 	    }
-
 	    MemberTableView.setItems(filteredList);
 	}
 

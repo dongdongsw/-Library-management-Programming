@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -39,8 +40,9 @@
             <Button fx:id="Exit" layoutX="110.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleExitButtonAction" prefHeight="32.0" prefWidth="68.0" text="종료" />
         </items>
       </ToolBar>
-      <ToolBar layoutX="20.0" layoutY="74.0" prefHeight="40.0" prefWidth="486.0">
+      <ToolBar layoutX="20.0" layoutY="74.0" prefHeight="40.0" prefWidth="600.0">
          <items>
+            <ComboBox fx:id="SearchStandard" prefHeight="23.0" prefWidth="95.0" />
             <TextField fx:id="SearchField" prefHeight="22.0" prefWidth="417.0" />
             <Button fx:id="SearchButton" mnemonicParsing="false" onAction="#handleSearchButtonAction" prefHeight="23.0" prefWidth="53.0" text="조회" />
          </items>

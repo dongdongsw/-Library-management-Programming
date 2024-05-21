@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -30,6 +31,8 @@ public class CheckOutReturn_ListController {
     private TableView<Book> BookTableView;
     private Member currentMember;
    
+    @FXML
+	private ComboBox<String> SearchStandard;
     @FXML
     private TextField SearchField;
     @FXML
@@ -90,6 +93,8 @@ public class CheckOutReturn_ListController {
     	
         // BookList의 데이터를 TableView에 설정
         BookTableView.setItems(bookList.getAllBook());
+      //검색시 선택할 기준
+        SearchStandard.setItems(FXCollections.observableArrayList("분류", "제목", "저자", "출판사"));
         
      // 체크박스 칼럼 설정
         CheckBoxColumn.setCellValueFactory(new PropertyValueFactory<>("selected"));
@@ -138,13 +143,29 @@ public class CheckOutReturn_ListController {
 	    String query = SearchField.getText().toLowerCase();
 	    ObservableList<Book> filteredList = FXCollections.observableArrayList();
 
+	    String searchStandard = SearchStandard.getValue();
+
 	    for (Book book : bookList.getBookList()) {
-	        if (book.getTitle().toLowerCase().contains(query) ||
-	            book.getAuthor().toLowerCase().contains(query) ||
-	            book.getPublisher().toLowerCase().contains(query)||
-	            book.getCategory().toLowerCase().contains(query)) {
-	            filteredList.add(book);
-	        }
+	    	if("분류".equals(searchStandard)) {
+	    		if(book.getCategory().toLowerCase().contains(query)) {
+	    			filteredList.add(book);
+	    		}
+	    	}
+	    	else if("제목".equals(searchStandard)) {
+	    		if(book.getTitle().toLowerCase().contains(query)) {
+	    			filteredList.add(book);
+	    		}
+	    	}
+	    	else if("저자".equals(searchStandard)) {
+	    		if(book.getAuthor().toLowerCase().contains(query)) {
+	    			filteredList.add(book);
+	    		}
+	    	}
+	    	else if("출판사".equals(searchStandard)) {
+	    		if(book.getPublisher().toLowerCase().contains(query)) {
+	    			filteredList.add(book);
+	    		}
+	    	}
 	    }
 
 	    BookTableView.setItems(filteredList);
