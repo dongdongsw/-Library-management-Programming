@@ -72,5 +72,10 @@ public class BookList {
     public void add(Book book) {
 		Books.add(book);	
 	}
+    
+    //도서 삭제
+    public void removeBook(Book book) {
+        Books.remove(book);
+    }
 
 }

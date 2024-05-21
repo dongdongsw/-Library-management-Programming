@@ -18,6 +18,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class BookListInfoController {
@@ -142,6 +143,42 @@ public class BookListInfoController {
         }
     	
     }
+    
+    @FXML
+    private void handleDeleteBookButtonAction(ActionEvent event) {
+    	
+    	Book selectedBook = null;
+        for (Book book : BookTableView.getItems()) {
+            if (book.isSelected()) {
+                selectedBook = book;
+                break;
+            }
+           
+        }  
+        
+        if(selectedBook != null) {
+        	if("대출중".equals(selectedBook.getIsCheckOuted())) {
+            	try {
+            		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Ui/CheckOutReturn/CheckOutReturn_message.fxml"));
+            		Parent root = loader.load();
+            		CheckOutReturn_MessageController controller = loader.getController();
+            		controller.setMessage("대출중인 도서는 삭제가 불가능 합니다.");
+            		showNewStage(root);
+            	} catch(IOException e) {
+            		e.printStackTrace();
+            	}
+            }
+            
+            else if("대출가능".equals(selectedBook.getIsCheckOuted())){
+            	showDeleteConfirmationDialog(selectedBook);
+            }
+        }
+        else {
+            // 선택된 책이 없는 경우 처리
+            System.out.println("선택된 책이 없습니다.");
+            showMessage("선택된 책이 없습니다.");
+        }
+    }
     @FXML 
 	private void handleMainMenuButtonAction(ActionEvent event) {
 		//메인메뉴 버튼을 눌렀을 때 대출&반납 메뉴가 꺼짐과 동시에 메인화면으로 전환
@@ -205,6 +242,42 @@ public class BookListInfoController {
     	BookTableView.setItems(FXCollections.observableArrayList(bookList.getAllBook()));
         BookTableView.refresh();
        
+    }
+    
+    private void showDeleteConfirmationDialog(Book book) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Ui/BookUserManagement/DeleteBook_Message.fxml"));
+            Parent root = loader.load();
+            
+            DeleteBookController controller = loader.getController();
+            controller.setBook(book);
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+            
+            if (controller.isConfirmed()) {
+            	showMessage("도서 삭제가 완료되었습니다.");
+                bookList.removeBook(book);
+                refreshTable();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+ // 새 창에서 메시지 보여주는 메소드
+    private void showMessage(String message) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Ui/CheckOutReturn/CheckOutReturn_message.fxml"));
+            Parent root = loader.load();
+            CheckOutReturn_MessageController controller = loader.getController();
+            controller.setMessage(message);
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

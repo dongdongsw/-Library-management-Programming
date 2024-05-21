@@ -45,7 +45,7 @@
       <ToolBar layoutX="20.0" layoutY="74.0" prefHeight="40.0" prefWidth="486.0">
          <items>
             <TextField fx:id="searchField" onKeyReleased="#handleSearch" prefHeight="22.0" prefWidth="417.0" promptText="검색..." />
-            <Button mnemonicParsing="false" onAction="#handleSearchButtonAction" prefHeight="23.0" prefWidth="53.0" text="조회" />
+            <Button fx:id="SearchButton" mnemonicParsing="false" onAction="#handleSearchButtonAction" prefHeight="23.0" prefWidth="53.0" text="조회" />
          </items>
       </ToolBar>   
 	</children>

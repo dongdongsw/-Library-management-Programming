@@ -284,6 +284,8 @@ public class MemberManagementController {
         members.remove(member);
         refreshMemberList();
     }
+    
+  
 
 	
 

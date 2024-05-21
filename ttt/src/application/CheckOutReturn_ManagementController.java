@@ -30,7 +30,7 @@ import javafx.collections.ObservableList;
 
 public class CheckOutReturn_ManagementController {
 	@FXML
-	private Button MainMenu, LogOut, Exit, CheckOutButton, ReturnButton;
+	private Button SearchButton, MainMenu, LogOut, Exit, CheckOutButton, ReturnButton;
 	
 	@FXML
     private TableView<Member> MemberTableView;
