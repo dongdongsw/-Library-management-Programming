@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainMenuController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="417.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainMenuController">
    <children>
       <VBox alignment="CENTER" layoutX="22.0" layoutY="98.0" prefHeight="287.0" prefWidth="240.0" spacing="15.0">
          <children>
@@ -21,11 +21,6 @@
                </font>
             </Button>
             <Button fx:id="CheckOutReturn" mnemonicParsing="false" onAction="#handleCheckOutReturnButtonAction" prefHeight="60.0" prefWidth="246.0" text="대출&amp;반납 ">
-               <font>
-                  <Font name="휴먼중간팸체" size="33.0" />
-               </font>
-            </Button>
-            <Button fx:id="LogOut" mnemonicParsing="false" onAction="#handleLogOutButtonAction" prefHeight="60.0" prefWidth="246.0" text="로그아웃 ">
                <font>
                   <Font name="휴먼중간팸체" size="33.0" />
                </font>

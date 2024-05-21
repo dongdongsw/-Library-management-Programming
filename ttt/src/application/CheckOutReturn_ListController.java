@@ -14,8 +14,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -28,7 +31,9 @@ public class CheckOutReturn_ListController {
     private Member currentMember;
    
     @FXML
-    private Button CheckOutButton, PreviousPage, Exit;
+    private TextField SearchField;
+    @FXML
+    private Button CheckOutButton, SearchButton, PreviousPage, Exit;
     @FXML
     private TableColumn<Book, String> BookNoColumn;
     @FXML
@@ -116,6 +121,34 @@ public class CheckOutReturn_ListController {
             }
         });
     }
+    
+    @FXML
+	private void handleSearchButtonAction(ActionEvent event) {
+	    search();
+	}
+
+	@FXML
+	private void handleSearch(KeyEvent event) {
+	    if (event.getCode() == KeyCode.ENTER) {
+	        search();
+	    }
+	}
+
+	private void search() {
+	    String query = SearchField.getText().toLowerCase();
+	    ObservableList<Book> filteredList = FXCollections.observableArrayList();
+
+	    for (Book book : bookList.getBookList()) {
+	        if (book.getTitle().toLowerCase().contains(query) ||
+	            book.getAuthor().toLowerCase().contains(query) ||
+	            book.getPublisher().toLowerCase().contains(query)||
+	            book.getCategory().toLowerCase().contains(query)) {
+	            filteredList.add(book);
+	        }
+	    }
+
+	    BookTableView.setItems(filteredList);
+	}
     
     @FXML
     private void handleCheckOutButtonAction(ActionEvent event) throws IOException {
@@ -207,8 +240,15 @@ public class CheckOutReturn_ListController {
       
     @FXML
 	private void handleExitButtonAction(ActionEvent event) {
-		//종료 버튼을 눌렀을 때 해당 프로그램이 종료 된다.
-		System.exit(0);
+    	try {
+    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Ui/Main/ExitMessage.fxml"));
+    		Parent root = loader.load();
+    		ExitMessageController controller = loader.getController();
+
+    		showNewStage(root);
+    	} catch(IOException e) {
+    		e.printStackTrace();
+    	}
   		
 	}
     

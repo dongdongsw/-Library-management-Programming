@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 public class MainMenuController {
 	
 	@FXML
-	private Button BookListInfo, MembeListInfo, CheckOutReturn, LogOut, Exit;
+	private Button BookListInfo, MembeListInfo, CheckOutReturn, Exit;
 	
 	@FXML
 	private void handleBookListButtonAction(ActionEvent event) {
@@ -84,34 +84,27 @@ public class MainMenuController {
   		
 	}
 	
-	@FXML
-	private void handleLogOutButtonAction(ActionEvent event) {
-		//로그아웃 버튼을 눌렀을 때 메인메뉴가 꺼짐과 동시에 로그인화면으로 전환
-		try {
-	
-			Parent Root = FXMLLoader.load(getClass().getResource("/application/Ui/Main/Login.fxml"));
-            Scene scene = new Scene(Root);
-            scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
-            
-         // 현재 스테이지 가져오기 (현재 이벤트가 발생한 Window를 기반으로)
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            
-            // 새로운 씬 설정하고 보이기
-            currentStage.setScene(scene);
-            currentStage.show();
-        } 
-		catch (IOException e) {
-        	e.printStackTrace();
-        }
-  		
-	}
 	
 	@FXML
 	private void handleExitButtonAction(ActionEvent event) {
-		//종료 버튼을 눌렀을 때 해당 프로그램이 종료 된다.
-		System.exit(0);
+		try {
+    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Ui/Main/ExitMessage.fxml"));
+    		Parent root = loader.load();
+    		ExitMessageController controller = loader.getController();
+
+    		showNewStage(root);
+    	} catch(IOException e) {
+    		e.printStackTrace();
+    	}
   		
 	}
+	
+	// 새 창에서 메시지 보여주는 메소드
+    private void showNewStage(Parent root) {
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.showAndWait();
+    }
 
 }

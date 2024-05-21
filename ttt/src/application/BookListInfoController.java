@@ -15,8 +15,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -26,9 +29,11 @@ public class BookListInfoController {
 	@FXML
     private TableView<Book> BookTableView;
     private Member currentMember;
-   
+  
     @FXML
-    private Button AddBook, DeleteBook, MainMenu, LogOut, Exit;
+    private TextField SearchField;
+    @FXML
+    private Button SearchButton, AddBook, DeleteBook, MainMenu, LogOut, Exit;
     @FXML
     private TableColumn<Book, String> BookNoColumn;
     @FXML
@@ -124,6 +129,35 @@ public class BookListInfoController {
         BookTableView.refresh();
     }
     
+    
+    @FXML
+	private void handleSearchButtonAction(ActionEvent event) {
+	    search();
+	}
+
+	@FXML
+	private void handleSearch(KeyEvent event) {
+	    if (event.getCode() == KeyCode.ENTER) {
+	        search();
+	    }
+	}
+
+	private void search() {
+	    String query = SearchField.getText().toLowerCase();
+	    ObservableList<Book> filteredList = FXCollections.observableArrayList();
+
+	    for (Book book : bookList.getBookList()) {
+	        if (book.getTitle().toLowerCase().contains(query) ||
+	            book.getAuthor().toLowerCase().contains(query) ||
+	            book.getPublisher().toLowerCase().contains(query)||
+	            book.getCategory().toLowerCase().contains(query)) {
+	            filteredList.add(book);
+	        }
+	    }
+
+	    BookTableView.setItems(filteredList);
+	}
+	
     @FXML 
     private void handleAddBookButtonAction(ActionEvent event) {
         try {
@@ -179,6 +213,7 @@ public class BookListInfoController {
             showMessage("선택된 책이 없습니다.");
         }
     }
+    
     @FXML 
 	private void handleMainMenuButtonAction(ActionEvent event) {
 		//메인메뉴 버튼을 눌렀을 때 대출&반납 메뉴가 꺼짐과 동시에 메인화면으로 전환
@@ -200,33 +235,19 @@ public class BookListInfoController {
         	e.printStackTrace();
         }
 	}
-	@FXML
-	private void handleLogOutButtonAction(ActionEvent event) {
-		//로그아웃 버튼을 눌렀을 때 대출&반납 메뉴가 꺼짐과 동시에 로그인화면으로 전환
-		try {
 	
-			Parent Root = FXMLLoader.load(getClass().getResource("/application/Ui/Main/Login.fxml"));
-            Scene scene = new Scene(Root);
-            scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-
-            
-         // 현재 스테이지 가져오기 (현재 이벤트가 발생한 Window를 기반으로)
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            
-            // 새로운 씬 설정하고 보이기
-            currentStage.setScene(scene);
-            currentStage.show();
-        } 
-		catch (IOException e) {
-        	e.printStackTrace();
-        }
-  		
-	}
       
     @FXML
 	private void handleExitButtonAction(ActionEvent event) {
-		//종료 버튼을 눌렀을 때 해당 프로그램이 종료 된다.
-		System.exit(0);
+    	try {
+    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Ui/Main/ExitMessage.fxml"));
+    		Parent root = loader.load();
+    		ExitMessageController controller = loader.getController();
+
+    		showNewStage(root);
+    	} catch(IOException e) {
+    		e.printStackTrace();
+    	}
   		
 	}
     

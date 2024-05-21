@@ -42,8 +42,8 @@
       <Button fx:id="CheckOutButton" layoutX="21.0" layoutY="507.0" mnemonicParsing="false" onAction="#handleCheckOutButtonAction" prefHeight="31.0" prefWidth="62.0" text="대출" />
       <ToolBar layoutX="20.0" layoutY="74.0" prefHeight="40.0" prefWidth="486.0">
          <items>
-            <TextField prefHeight="22.0" prefWidth="417.0" />
-            <Button mnemonicParsing="false" prefHeight="23.0" prefWidth="53.0" text="조회" />
+            <TextField fx:id="SearchField" prefHeight="22.0" prefWidth="417.0" />
+            <Button fx:id="SearchButton" mnemonicParsing="false" onAction="#handleSearchButtonAction" prefHeight="23.0" prefWidth="53.0" text="조회" />
          </items>
       </ToolBar>   
 	</children>

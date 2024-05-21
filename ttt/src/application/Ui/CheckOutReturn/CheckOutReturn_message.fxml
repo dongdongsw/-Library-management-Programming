@@ -6,22 +6,22 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CheckOutReturn_MessageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CheckOutReturn_MessageController">
    <children>
-      <StackPane prefHeight="100.0" prefWidth="550.0">
+      <StackPane prefHeight="50.0" prefWidth="300.0">
          <children>
-            <Text fx:id="messageText" strokeType="OUTSIDE" strokeWidth="0.0" text="입력하신 회원명은 존재하지 않습니다." textAlignment="CENTER">
+            <Text fx:id="messageText" strokeType="OUTSIDE" strokeWidth="0.0" text="입력하신 회원명은 존재하지 않습니다." textAlignment="CENTER" wrappingWidth="298.96875">
                <font>
-                  <Font size="30.0" />
+                  <Font size="15.0" />
                </font>
             </Text>
          </children>
       </StackPane>
-      <StackPane layoutY="92.0" prefHeight="100.0" prefWidth="550.0">
+      <StackPane layoutY="50.0" prefHeight="50.0" prefWidth="300.0">
          <children>
-            <Button fx:id="OKButton" mnemonicParsing="false" onAction="#handleOKButtonAction" prefHeight="50.0" prefWidth="150.0" text="확인" textAlignment="CENTER">
+            <Button fx:id="OKButton" mnemonicParsing="false" onAction="#handleOKButtonAction" prefHeight="20.0" prefWidth="50.0" text="확인" textAlignment="CENTER">
                <font>
-                  <Font name="Calibri" size="20.0" />
+                  <Font name="Calibri" size="10.0" />
                </font>
             </Button>
          </children>

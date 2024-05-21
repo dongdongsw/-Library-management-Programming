@@ -25,7 +25,7 @@ import javafx.collections.ObservableList;
 public class MemberManagementController {
 	
 	@FXML
-	private Button AddMember, DeleteMember, MainMenu, LogOut, Exit;
+	private Button AddMember, CorrectionMember, DeleteMember, MainMenu, LogOut, Exit;
 	
 	@FXML
     private TableView<Member> MemberTableView;
@@ -124,7 +124,7 @@ public class MemberManagementController {
     
     @FXML
     private void handleDeleteMemberButtonAction(ActionEvent event) {
-    	//ObservableList<Member> selectedMembers = members.filtered(member -> member.isSelected());
+    	
     	ObservableList<Member> selectedMembers = FXCollections.observableArrayList(members.filtered(member -> member.isSelected()));
 
         for (Member member : selectedMembers) {
@@ -141,6 +141,43 @@ public class MemberManagementController {
             }
         }
     	
+    }
+    
+    @FXML
+    private void handleCorrectionMemberButtonAction(ActionEvent event) {
+    	ObservableList<Member> selectedMembers = FXCollections.observableArrayList(members.filtered(member -> member.isSelected()));
+
+        for (Member member : selectedMembers) {
+            boolean isCheckedOut = bookList.getBookList().stream().anyMatch(book -> 
+                book.getCheckOutedName().equals(member.getMember_Name()) && 
+                book.getCheckOutedId().equals(member.getMember_Id())
+            );
+
+            if (isCheckedOut) {
+                showMessage("도서 대출중인 회원은 수정이 불가능 합니다.");
+                return;
+            } else {
+            	
+            	Member selectedMember = selectedMembers.get(0);
+            	try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Ui/BookUserManagement/CorrectionMember.fxml"));
+                    Parent root = loader.load();
+                    
+                 // CorrectionMemberController 인스턴스를 가져와서 MemberManagementController 인스턴스를 설정
+                    CorrectionMemberController correctionMemberController = loader.getController();
+                    correctionMemberController.setMemberManagementController(this);
+                    correctionMemberController.setMemberData(selectedMember);
+
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(root));
+                    stage.showAndWait(); // 새로운 창을 모달로 표시
+                    refreshTable();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            	
+            }
+        }
     }
     
     
@@ -172,32 +209,19 @@ public class MemberManagementController {
         	e.printStackTrace();
         }
 	}
-	@FXML
-	private void handleLogOutButtonAction(ActionEvent event) {
-		//로그아웃 버튼을 눌렀을 때 회원목록 화면 꺼짐과 동시에 로그인화면으로 전환
-		try {
 	
-			Parent Root = FXMLLoader.load(getClass().getResource("/application/Ui/Main/Login.fxml"));
-            Scene scene = new Scene(Root);
-            scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-
-            
-         // 현재 스테이지 가져오기 (현재 이벤트가 발생한 Window를 기반으로)
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            
-            // 새로운 씬 설정하고 보이기
-            currentStage.setScene(scene);
-            currentStage.show();
-        } 
-		catch (IOException e) {
-        	e.printStackTrace();
-        }
   		
-	}
 	@FXML
 	private void handleExitButtonAction(ActionEvent event) {
-		//종료 버튼을 눌렀을 때 해당 프로그램이 종료 된다.
-		System.exit(0);
+		try {
+    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Ui/Main/ExitMessage.fxml"));
+    		Parent root = loader.load();
+    		ExitMessageController controller = loader.getController();
+
+    		showNewStage(root);
+    	} catch(IOException e) {
+    		e.printStackTrace();
+    	}
   		
 	}
 	
@@ -285,6 +309,12 @@ public class MemberManagementController {
         refreshMemberList();
     }
     
+ // 새 창에서 메시지 보여주는 메소드
+    private void showNewStage(Parent root) {
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.showAndWait();
+    }
   
 
 	
