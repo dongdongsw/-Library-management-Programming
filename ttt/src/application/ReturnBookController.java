@@ -142,6 +142,11 @@ public class ReturnBookController {
             Stage stage = (Stage) ReturnButton.getScene().getWindow();
             stage.close();
         }
+        
+        else if(selectedBook == null) {
+        	showMessage("도서를 선택하지 않았습니다.");
+        	return;
+        }
     }
 
  // 새 창에서 메시지 보여주는 메소드
@@ -150,6 +155,21 @@ public class ReturnBookController {
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
+    }
+    
+ // 새 창에서 메시지 보여주는 메소드
+    private void showMessage(String message) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Ui/CheckOutReturn/CheckOutReturn_message.fxml"));
+            Parent root = loader.load();
+            CheckOutReturn_MessageController controller = loader.getController();
+            controller.setMessage(message);
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
  
 }
