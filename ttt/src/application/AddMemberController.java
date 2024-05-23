@@ -86,6 +86,32 @@ public class AddMemberController {
                 return; // 중복되면 추가하지 않고 함수 종료
             }
         }
+        
+        if (member.getMember_No().isEmpty()) {
+            showMessage("회원번호를 입력해 주세요.");
+            return; 
+        }
+        
+        else if (member.getMember_Id().isEmpty()) {
+            showMessage("아이디를 입력해 주세요.");
+            return; 
+        }
+        
+        else if (member.getMember_Name().isEmpty()) {
+            showMessage("이름을 입력해 주세요.");
+            return; 
+        }
+        
+        else if (member.getBirthday().isEmpty()) {
+            showMessage("생일을 입력해 주세요.");
+            return; 
+        }
+        else if (member.getPhoneNumber().isEmpty()) {
+            showMessage("전화번호를 입력해 주세요.");
+            return; 
+        }
+        
+        
 
         memberList.add(member);
         showMessage("회원이 성공적으로 추가되었습니다.");

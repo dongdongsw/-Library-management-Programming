@@ -80,6 +80,31 @@ public class AddBookController {
                 return; // 중복되면 추가하지 않고 함수 종료
             }
         }
+        
+        if(book.getBook_No().isEmpty()) {
+        	showMessage("도서 번호를 입력해 주세요.");
+        	return;
+        }
+        
+        else if(book.getCategory().isEmpty()) {
+        	showMessage("분류를 입력해 주세요.");
+        	return;
+        }
+        
+        else if(book.getTitle().isEmpty()) {
+        	showMessage("도서 제목을 입력해 주세요.");
+        	return;
+        }
+        
+        else if(book.getAuthor().isEmpty()) {
+        	showMessage("저자를 입력해 주세요.");
+        	return;
+        }
+        else if(book.getPublisher().isEmpty()) {
+        	showMessage("출판사를 입력해 주세요.");
+        	return;
+        }
+        
         bookList.add(book);
         showMessage("도서가 성공적으로 추가되었습니다.");
         
