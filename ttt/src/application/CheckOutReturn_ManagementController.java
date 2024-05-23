@@ -70,12 +70,7 @@ public class CheckOutReturn_ManagementController {
     
     private MemberList Member = MemberList.getInstance(); // MemberList 인스턴스 생성
     private BookList availableBooks = BookList.getInstance(); // 사용 가능한 책 목록
-  
-
-   
-    
-    
-
+ 
     @FXML
     private void initialize() {
     	memberNoColumn.setCellValueFactory(new PropertyValueFactory<>("Member_No"));
@@ -126,18 +121,10 @@ public class CheckOutReturn_ManagementController {
         }
         
         if (selectedMember == null) {
-        	try {
-                // 메시지 창 로드
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Ui/CheckOutReturn/CheckOutReturn_message.fxml"));
-                Parent root = loader.load();
-                CheckOutReturn_MessageController controller = loader.getController();
-                controller.setMessage("회원이 선택되지 않았습니다.");
-                showNewStage(root);
-                return;
-        	}
-        	catch (IOException e) {
-                e.printStackTrace();
-            }
+        	
+        	showMessage("회원을 선택하지 않았습니다.");
+        	return;
+        	
         }
         if (selectedMember != null && selectedMember.getCheckOutLimit() > 0 && "O".equals(selectedMember.getCheckOutEligible())) {
             try {
@@ -165,31 +152,16 @@ public class CheckOutReturn_ManagementController {
            
         } 
         else {
-            // 에러 메시지 표시
-        	try {
-                // 메시지 창 로드
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Ui/CheckOutReturn/CheckOutReturn_message.fxml"));
-                Parent root = loader.load();
-                CheckOutReturn_MessageController controller = loader.getController();
-
                 // 상황에 따른 메시지 설정
-                if ("X".equals(selectedMember.getCheckOutEligible())) {
-                    controller.setMessage("대출이 불가능한 상태입니다.");
-                    showNewStage(root);
-                    return;
-                }
-
-                if (selectedMember.getCheckOutLimit() == 0) {
-                    controller.setMessage("대출 가능한 도서의 수가 없습니다.");
-                    showNewStage(root);
-                    return;
-                }
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        	
-        }
+        	if ("X".equals(selectedMember.getCheckOutEligible())) {
+        		showMessage("대출이 불가능한 상태입니다.");
+        		return;
+        		
+        	}
+        	else if (selectedMember.getCheckOutLimit() == 0) {
+        		showMessage("대출가능한 도서의 수가 없습니다.");
+        		}
+        	}
     }
    
     //반납 버튼 클릭시 이벤트 핸들러
@@ -206,34 +178,13 @@ public class CheckOutReturn_ManagementController {
         }
         
         if (selectedMember == null) {
-        	try {
-                // 메시지 창 로드
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Ui/CheckOutReturn/CheckOutReturn_message.fxml"));
-                Parent root = loader.load();
-                CheckOutReturn_MessageController controller = loader.getController();
-                controller.setMessage("회원이 선택되지 않았습니다.");
-                showNewStage(root);
-                return;
-        	}
-        	catch (IOException e) {
-                e.printStackTrace();
-            }
+        	showMessage("회원을 선택하지 않았습니다.");
+        	return;      
         }
         
-        if (selectedMember.getBorrowedBooks().isEmpty()) {
-        	// 대출한 도서가 없는 경우
-        	try {
-                // 메시지 창 로드
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Ui/CheckOutReturn/CheckOutReturn_message.fxml"));
-                Parent root = loader.load();
-                CheckOutReturn_MessageController controller = loader.getController();
-                controller.setMessage("대출한 도서가 존재하지 않습니다.");
-                showNewStage(root);
-                return;
-        	}
-        	catch (IOException e) {
-                e.printStackTrace();
-            }
+        else if (selectedMember.getBorrowedBooks().isEmpty()) {
+        	showMessage("대출한 도서가 없습니다.");
+        	return;     	
         }
         
         else {
@@ -350,5 +301,20 @@ public class CheckOutReturn_ManagementController {
     private List<Member> getAllMembers() {
         // 실제 구현에 맞게 데이터를 가져오는 로직을 추가
         return new ArrayList<>();
+    }
+    
+ // 새 창에서 메시지 보여주는 메소드
+    private void showMessage(String message) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Ui/CheckOutReturn/CheckOutReturn_message.fxml"));
+            Parent root = loader.load();
+            CheckOutReturn_MessageController controller = loader.getController();
+            controller.setMessage(message);
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

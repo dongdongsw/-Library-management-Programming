@@ -131,13 +131,20 @@ public class MemberManagementController {
     private void handleDeleteMemberButtonAction(ActionEvent event) {
     	
     	ObservableList<Member> selectedMembers = FXCollections.observableArrayList(members.filtered(member -> member.isSelected()));
+    	
+    	if (selectedMembers.isEmpty()) {
+            // 메시지 창 로드
+    		showMessage("회원을 선택하지 않았습니다.");
+            return;
+	}
 
         for (Member member : selectedMembers) {
             boolean isCheckedOut = bookList.getBookList().stream().anyMatch(book -> 
                 book.getCheckOutedName().equals(member.getMember_Name()) && 
                 book.getCheckOutedId().equals(member.getMember_Id())
             );
-
+            
+        
             if (isCheckedOut) {
                 showMessage("도서 대출중인 회원은 삭제가 불가능 합니다.");
                 return;
@@ -151,13 +158,22 @@ public class MemberManagementController {
     @FXML
     private void handleCorrectionMemberButtonAction(ActionEvent event) {
     	ObservableList<Member> selectedMembers = FXCollections.observableArrayList(members.filtered(member -> member.isSelected()));
-
+    	
+    	if (selectedMembers.isEmpty()) {
+                // 메시지 창 로드
+        		showMessage("회원을 선택하지 않았습니다.");
+                return;
+    	}
+        	
+    	
         for (Member member : selectedMembers) {
             boolean isCheckedOut = bookList.getBookList().stream().anyMatch(book -> 
                 book.getCheckOutedName().equals(member.getMember_Name()) && 
                 book.getCheckOutedId().equals(member.getMember_Id())
             );
-
+           
+           
+   
             if (isCheckedOut) {
                 showMessage("도서 대출중인 회원은 수정이 불가능 합니다.");
                 return;
@@ -183,6 +199,8 @@ public class MemberManagementController {
             	
             }
         }
+        
+        
     }
     
     

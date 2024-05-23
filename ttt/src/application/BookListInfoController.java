@@ -210,27 +210,20 @@ public class BookListInfoController {
            
         }  
         
-        if(selectedBook != null) {
+        if (selectedBook == null) {
+        	showMessage("도서를 선택하지 않았습니다.");
+        	return;
+        }
+        
+        else if(selectedBook != null) {
         	if("대출중".equals(selectedBook.getIsCheckOuted())) {
-            	try {
-            		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Ui/CheckOutReturn/CheckOutReturn_message.fxml"));
-            		Parent root = loader.load();
-            		CheckOutReturn_MessageController controller = loader.getController();
-            		controller.setMessage("대출중인 도서는 삭제가 불가능 합니다.");
-            		showNewStage(root);
-            	} catch(IOException e) {
-            		e.printStackTrace();
-            	}
+        		showMessage("대출중인 도서는 삭제가 불가능 합니다.");
+        		return;          	
             }
             
             else if("대출가능".equals(selectedBook.getIsCheckOuted())){
             	showDeleteConfirmationDialog(selectedBook);
             }
-        }
-        else {
-            // 선택된 책이 없는 경우 처리
-            System.out.println("선택된 책이 없습니다.");
-            showMessage("선택된 책이 없습니다.");
         }
     }
     

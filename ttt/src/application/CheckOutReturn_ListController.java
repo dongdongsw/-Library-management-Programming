@@ -182,8 +182,13 @@ public class CheckOutReturn_ListController {
                 break;
             }
         }
+        if (selectedBook == null) {
+        	showMessage("도서를 선택하지 않았습니다.");
+        	return;
+        	
+        }
         
-        if (selectedBook != null && "대출가능".equals(selectedBook.getIsCheckOuted())) {
+        else if (selectedBook != null && "대출가능".equals(selectedBook.getIsCheckOuted())) {
         	try {
         	
                 
@@ -199,11 +204,7 @@ public class CheckOutReturn_ListController {
                 
 
                 // 메시지 창 로드
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Ui/CheckOutReturn/CheckOutReturn_message.fxml"));
-                Parent root = loader.load();
-                CheckOutReturn_MessageController controller = loader.getController();
-                controller.setMessage("대출이 완료되었습니다.");
-                showNewStage(root);
+                showMessage("대출이 완료되었습니다.");
                 
                 //BookTableView 및 BookList 갱신
                 BookTableView.refresh();
@@ -224,16 +225,8 @@ public class CheckOutReturn_ListController {
             }
         }
         else if("대출중".equals(selectedBook.getIsCheckOuted())) {
-        	try {
-        		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Ui/CheckOutReturn/CheckOutReturn_message.fxml"));
-        		Parent root = loader.load();
-        		CheckOutReturn_MessageController controller = loader.getController();
-        		controller.setMessage("현재 대출중인 도서입니다.");
-        		showNewStage(root);
-        	} catch(IOException e) {
-        		e.printStackTrace();
-        	}
-        	
+        	showMessage("현재 대출중인 도서입니다.");
+        	return;       	
         }
     }
     @FXML
@@ -278,6 +271,20 @@ public class CheckOutReturn_ListController {
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.showAndWait();
+    }
+ // 새 창에서 메시지 보여주는 메소드
+    private void showMessage(String message) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/Ui/CheckOutReturn/CheckOutReturn_message.fxml"));
+            Parent root = loader.load();
+            CheckOutReturn_MessageController controller = loader.getController();
+            controller.setMessage(message);
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     
